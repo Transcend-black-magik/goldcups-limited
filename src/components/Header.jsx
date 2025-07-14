@@ -5,28 +5,35 @@ import './Header.css';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = () => setMenuOpen(prev => !prev);
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <nav className="navbar">
-      <div className="navbar-container" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <span className="trophy-icon" role="img" aria-label="trophy" style={{ fontSize: '2rem', marginRight: '0.1rem' }}>🏆</span>
-        <h1 className="logo" >Goldcups Limited</h1>
-        <div className="menu-icon" onClick={toggleMenu} style={{ marginRight: '1rem' }}>
+      <div className="navbar-container">
+        {/* Logo and company name */}
+        <div className="logo-container">
+          <span className="trophy-icon" role="img" aria-label="trophy">🏆</span>
+          <h1 className="logo">Goldcups Limited</h1>
+        </div>
+
+        {/* Hamburger menu icon */}
+        <div className="menu-icon" onClick={toggleMenu}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
-        <ul className={`nav-links ${menuOpen ? 'active' : ''}`} style={{ display: 'flex', gap: '2.5rem', marginLeft: 'auto' }}>
-          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-          <li><Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link></li>
-          <li><Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link></li>
-          <li><Link to="/testimonials" onClick={() => setMenuOpen(false)}>Testimonials</Link></li>
-          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
+
+        {/* Navigation Links */}
+        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+          <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+          <li><Link to="/services" onClick={closeMenu}>Services</Link></li>
+          <li><Link to="/about" onClick={closeMenu}>About Us</Link></li>
+          <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
         </ul>
       </div>
     </nav>
   );
 };
 
-export default Header
+export default Header;
