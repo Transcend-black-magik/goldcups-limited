@@ -1,0 +1,38 @@
+[debug] [2025-07-14T18:04:56.230Z] ----------------------------------------------------------------------
+[debug] [2025-07-14T18:04:56.232Z] Command:       /usr/local/bin/firebase /home/toxictrader/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase init hosting
+[debug] [2025-07-14T18:04:56.232Z] CLI Version:   14.10.1
+[debug] [2025-07-14T18:04:56.232Z] Platform:      linux
+[debug] [2025-07-14T18:04:56.232Z] Node Version:  v20.18.2
+[debug] [2025-07-14T18:04:56.232Z] Time:          Mon Jul 14 2025 13:04:56 GMT-0500 (Central Daylight Time)
+[debug] [2025-07-14T18:04:56.232Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-14T18:04:56.235Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-14T18:04:56.235Z] > authorizing via signed-in user (goldcups91@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/toxictrader/Documents/Projects/Client_Projects/goldcupslimited
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-07-14T18:05:05.232Z] Checked if tokens are valid: true, expires at: 1752518955801
+[debug] [2025-07-14T18:05:05.232Z] Checked if tokens are valid: true, expires at: 1752518955801
+[debug] [2025-07-14T18:05:05.233Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-07-14T18:05:05.596Z] *** [apiv2] error from fetch(https://firebase.googleapis.com/v1beta1/projects?pageSize=100, {"headers":{},"method":"GET","signal":{}}): FetchError: request to https://firebase.googleapis.com/v1beta1/projects?pageSize=100 failed, reason: 
+[debug] [2025-07-14T18:05:05.596Z] Failed to make request to https://firebase.googleapis.com/v1beta1/projects?pageSize=100
+[debug] [2025-07-14T18:05:08.388Z] FirebaseError: Failed to make request to https://firebase.googleapis.com/v1beta1/projects?pageSize=100
+    at RetryOperation._fn (/home/toxictrader/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/apiv2.js:261:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to list Firebase projects. See firebase-debug.log for more info.

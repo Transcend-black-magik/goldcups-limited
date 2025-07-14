@@ -5,13 +5,19 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 // Your Firebase config object
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyATc--kqSgJo7_WTEPhSpZk5ZC18q_GbGc",
-  authDomain: "goldcups-limited.firebaseapp.com",
-  projectId: "goldcups-limited",
-  storageBucket: "goldcups-limited.firebasestorage.app",
-  messagingSenderId: "452043533013",
-  appId: "1:452043533013:web:e91691bfb74a66cf05105c"
+  apiKey: "AIzaSyCdotw-er4FPsK07zUTDn4As-T_R14lqQ4",
+  authDomain: "goldcupslimited.firebaseapp.com",
+  projectId: "goldcupslimited",
+  storageBucket: "goldcupslimited.firebasestorage.app",
+  messagingSenderId: "47754139745",
+  appId: "1:47754139745:web:15524e9c7e3b27ac19f220"
 };
 
 // Initialize Firebase
