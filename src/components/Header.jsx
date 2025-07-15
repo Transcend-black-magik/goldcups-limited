@@ -28,7 +28,8 @@ const Header = () => {
         {/* Logo Section */}
         <div className="logo-container">
           <img src={logoImg} alt="Goldcups Limited Logo" className="logo-image" />
-          <h1 className="logo">Goldcups Limited</h1>
+          <h1 className="logo">Goldcups <span className="logo-sub">Limited</span></h1>
+
         </div>
 
         {isMobile ? (
