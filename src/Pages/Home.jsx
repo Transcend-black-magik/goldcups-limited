@@ -57,7 +57,7 @@ const servicesData = [
   },
   {
     title: 'Oil and Gas Services',
-    desc: 'Integrated estate management services including facility administration, security management, and community engagement.',
+    desc: 'This business plan outlines the establishment of a new enterprise dedicated to providing specialized services, essential supplies, and comprehensive support to the oil and gas industry. ',
     icon: <FaGasPump />,
   },
 ];
@@ -108,6 +108,16 @@ const MainContent = () => {
           understanding of the local market dynamics and a commitment to excellence,
           Goldcups Consulting Limited is set to be the trusted advisor for a diverse clientele,
           from aspiring entrepreneurs to established property holders.
+        </p>
+        <p className="highlight-nigeria">
+          Nigeria, a nation characterized by its dynamic economy and burgeoning
+          entrepreneurial spirit, presents a landscape of immense opportunities alongside
+          unique challenges. For businesses and property owners navigating this vibrant
+          environment, access to expert guidance and streamlined services is paramount for
+          sustainable growth and compliance. It is within this context that Goldcups Consulting
+          Limited proudly announces its launch, poised to become a pivotal partner for
+          individuals and organizations seeking to establish, manage, and grow their ventures in
+          Nigeria.
         </p>
       </section>
 

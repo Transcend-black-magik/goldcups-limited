@@ -98,13 +98,11 @@
   line-height: 1.6;
   max-width: 1000px;
   margin-bottom: 2rem;
+  padding-left: 1rem;
 }
-.introduction h3 {
-  text-align: start;
-  font-size: 2.4rem;
-  font-weight: 300;
+.highlight-nigeria {
+  color: #155dfd;
 }
-
 
 /*   */
 .mission {
