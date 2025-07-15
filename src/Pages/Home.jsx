@@ -141,7 +141,7 @@ const MainContent = () => {
       </section>
 
       <section className="mission" data-aos="fade-up" data-aos-delay="200">
-        <h2 style={{ color: "white", textAlign: "start", fontSize: "2.2rem" }}>Business Services</h2>
+        <h2 style={{ color: "white", textAlign: "start", fontSize: "1.1rem" }}>Business Services</h2>
         <h3 style={{ color: "white", textAlign: "start", fontSize: "1.2rem", marginBottom: "3rem" }}>
           Goldcups Consulting Limited offers a synergistic suite of services designed to address the critical needs
           of businesses and property owners in Nigeria.

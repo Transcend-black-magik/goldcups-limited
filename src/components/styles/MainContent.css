@@ -180,24 +180,17 @@
 }
 .services {
   padding: 2rem 11%;
-  text-align: center;
+  text-align: start;
   background-color: #ffffff;
 }
 
 .services h2 {
   font-size: 2.2rem;
   margin-bottom: 1rem;
+  font-weight: bold;
   color: #002244;
 }
 
-.services h3 {
-  font-size: 1rem;
-  font-weight: 400;
-  color: #555;
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
-  line-height: 1.6;
-}
 
 .service-cards {
   display: flex;
