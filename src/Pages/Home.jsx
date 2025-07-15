@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../components/styles/MainContent.css';
@@ -77,9 +76,15 @@ const MainContent = () => {
             Delivering excellence in business consulting, registration, and property management across Nigeria.
             Let us simplify compliance and maximize your value.
           </p>
-          <Link to="/services" className="btn-primary">
-            Explore Our Services
-          </Link>
+          <div class="btn-container">
+          <button class="btn-primary" id="actionBtn" onClick={() => window.location.href = '/#'}>
+            <span class="btn-icon">🚀</span>
+            <span class="btn-text">Get Started</span>
+            <span class="btn-spinner"></span>
+          </button>
+        </div>
+
+
         </div>
         <div className="hero-image" data-aos="zoom-in" data-aos-delay="200">
           <img src={HeroImage} alt="Business illustration" />

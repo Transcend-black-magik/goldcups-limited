@@ -1,103 +1,142 @@
-/* Navbar.css */
-
-/* Base Styles */
+/* ========== Base Styles ========== */
 .navbar {
-  background-color: #fff;
-  padding: 2rem 10%;
   position: sticky;
   top: 0;
   z-index: 1000;
+  background-color: #e3e2de;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 2rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Navbar Inner Container */
 .navbar-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 10%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
 }
 
+/* Logo */
 .logo-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.trophy-icon {
-  font-size: 2rem;
-  margin: 0;
-}
-
 .logo {
   font-size: 1.7rem;
-  font-weight: bolder;
-  font-family: "Fjalla One", sans-serif;
+  font-weight: 700;
+  font-family: 'Fjalla One', sans-serif;
   color: #23397d;
   margin: 0;
 }
 
+.logo-image {
+  height: 4.2rem;
+  width: auto;
+  margin-right: 10px;
+  border-radius: 6px;
+  object-fit: cover;
+}
 
-/* Navigation Links */
-.nav-links {
-  list-style: none;
+/* ========== Desktop Nav ========== */
+.nav-links-desktop {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
+  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.nav-links li a {
-  color: #002244;
+.nav-links-desktop li a {
   text-decoration: none;
-  font-weight: 500;
+  color: #002244;
   font-size: 1.1rem;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.nav-links li a:hover {
+.nav-links-desktop li a:hover {
   color: #00ccff;
 }
 
-/* Hamburger Menu */
+/* ========== Mobile Hamburger Menu ========== */
 .menu-icon {
   display: none;
   flex-direction: column;
-  gap: 5px;
   cursor: pointer;
+  gap: 5px;
 }
 
 .menu-icon .bar {
   width: 25px;
   height: 3px;
   background-color: #002244;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
-/* Responsive Styles */
+/* ========== Mobile Nav ========== */
+.nav-links-mobile {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: max-height 0.3s ease;
+  list-style: none;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links-mobile.active {
+  max-height: 300px;
+  padding: 1rem 0;
+}
+
+.nav-links-mobile li {
+  text-align: center;
+  padding: 1rem;
+}
+
+.nav-links-mobile li a {
+  text-decoration: none;
+  color: #002244;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: block;
+}
+
+.nav-links-mobile li a:hover {
+  background-color: #f5f5f5;
+  color: #00ccff;
+}
+
+/* ========== Responsive Rules ========== */
 @media (max-width: 768px) {
   .menu-icon {
     display: flex;
   }
 
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background-color: #fff;
-    flex-direction: column;
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    border-top: 1px solid #ddd;
+  .nav-links-desktop {
+    display: none;
   }
+}
 
-  .nav-links.active {
-    max-height: 300px;
-    padding: 1rem 0;
+@media (min-width: 769px) {
+  .nav-links-mobile {
+    display: none;
   }
+}
 
-  .nav-links li {
-    padding: 1rem;
-    text-align: center;
-  }
+/* Optional: prevent horizontal scroll */
+body {
+  overflow-x: hidden;
 }
