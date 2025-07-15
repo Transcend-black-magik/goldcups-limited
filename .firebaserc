@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "goldcupslimited"
-  }
+    "default": "goldcupslimited",
+    "staging": "goldcupslimited"
+  },
+  "targets": {},
+  "etags": {}
 }
