@@ -81,6 +81,106 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* =============Introduction Section================ */
+.introduction {
+  padding: 4rem 12%;
+  text-align: start;
+  background-color: #ffffff;
+}
+.introduction h2 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #002244;
+}
+.introduction p {
+  font-size: 1.5rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin-bottom: 2rem;
+}
+.introduction h3 {
+  text-align: start;
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+
+/*   */
+.mission {
+  padding: 1rem 12%;
+  text-align: start;
+  background-color: #002244;
+}
+.mission h3 {
+  font-size: 2.4rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+/* ========= Offer List Section ========= */
+.offer-list {
+  padding: 5rem 12%;
+  text-align: center;
+  color: #002244;
+}
+
+.services-offered {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #001e3c;
+  margin-bottom: 4rem;
+  text-align: start;
+  font-family: "Michroma", sans-serif;
+}
+.offer-list-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.offer-item {
+  padding: 2rem;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.offer-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.offer-item h4 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #004080;
+  font-family: 'Fjalla One', sans-serif;
+
+}
+
+.offer-item p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #333;
+  font-family: 'Fjalla One', sans-serif;
+
+}
+
+.offer-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+
 /* ========= Services Section ========= */
 .services {
   padding: 4rem 12%;

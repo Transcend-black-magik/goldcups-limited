@@ -3,6 +3,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../components/styles/MainContent.css';
 import HeroImage from '../assets/hero-image.png';
+import missionImage from '../assets/mission-image.png';
+import vissionImage from '../assets/vision-image.png';
+import mottoImage from '../assets/motto-image.png';
 
 // SVG icons (or use react-icons if you prefer)
 import { 
@@ -12,7 +15,8 @@ import {
   FaPenFancy, 
   FaShoppingCart, 
   FaBuilding, 
-  FaHome 
+  FaHome, 
+  FaGasPump
 } from 'react-icons/fa';
 
 const servicesData = [
@@ -54,7 +58,7 @@ const servicesData = [
   {
     title: 'Oil and Gas Services',
     desc: 'Integrated estate management services including facility administration, security management, and community engagement.',
-    icon: <FaHome />,
+    icon: <FaGasPump />,
   },
 ];
 
@@ -100,14 +104,43 @@ const MainContent = () => {
         <h2>Discover Goldcups</h2>
         <p>
           Goldcups Consulting Limited is a newly established firm dedicated to providing
-          comprehensive business and estate management services. Our mission is to empower
-          our clients by simplifying complex administrative processes, oﬀering strategic insights,
-          and ensuring compliance with Nigerian regulatory frameworks. With a deep
+          comprehensive business and estate management services. With a deep
           understanding of the local market dynamics and a commitment to excellence,
           Goldcups Consulting Limited is set to be the trusted advisor for a diverse clientele,
           from aspiring entrepreneurs to established property holders.
         </p>
-        
+      </section>
+
+      {/* Mission, Vision, and Motto Section */}
+      <section className='mission-vision-motto'>
+        <section className="mission" data-aos="fade-up" data-aos-delay="600">
+          <h3 className='services-offered'>We Offer</h3>
+        </section>
+
+        {/* {Our Aim} */}
+        <section className='offer-list' data-aos="fade-up" data-aos-delay="400">
+          <div className='offer-list-items'>
+            <div className='offer-item'>
+              <img className='offer-img' src={missionImage} alt="Business illustration" />
+              <h4>Our Mission</h4>
+              <p>To provide exceptional, client-centric business and estate management solutions that
+                  foster growth, ensure compliance, and maximize value for our clients in Nigeria.
+                  Core Service Areas
+              </p>
+            </div>
+            <div className='offer-item'>
+              <img className='offer-img' src={vissionImage} alt="Business illustration" />
+              <h4>Our Vision</h4>
+              <p>To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and
+                unwavering commitment to client success in both business and estate management.</p>
+            </div>
+            <div className='offer-item'>
+              <img className='offer-img' src={mottoImage} alt="Business illustration" />
+              <h4>Our Motto</h4>
+              <p>Ensure statutory compliance by managing and filing annual returns with CAC and FIRS, including financial statements preparation.</p>
+            </div>
+          </div>
+        </section>
       </section>
 
       {/* Services Section */}
