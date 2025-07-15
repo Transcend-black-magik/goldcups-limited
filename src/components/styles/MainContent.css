@@ -174,8 +174,12 @@
 }
 
 /* ========= Services Section ========= */
+.mission {
+  padding: 2rem 11%;
+  text-align: center;
+}
 .services {
-  padding: 4rem 12%;
+  padding: 2rem 11%;
   text-align: center;
   background-color: #ffffff;
 }
@@ -275,6 +279,9 @@
   }
 
   .services {
+    padding: 3rem 8%;
+  }
+  .mission {
     padding: 3rem 8%;
   }
 }

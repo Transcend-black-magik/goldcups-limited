@@ -5,28 +5,27 @@ import '../components/styles/MainContent.css';
 import HeroImage from '../assets/hero-image.png';
 import missionImage from '../assets/mission-image.png';
 import vissionImage from '../assets/vision-image.png';
-import mottoImage from '../assets/motto-image.png';
 
-import { 
-  FaBriefcase, 
-  FaFileInvoiceDollar, 
-  FaFileAlt, 
-  FaPenFancy, 
-  FaShoppingCart, 
-  FaBuilding, 
-  FaHome, 
+import {
+  FaBriefcase,
+  FaFileInvoiceDollar,
+  FaFileAlt,
+  FaPenFancy,
+  FaShoppingCart,
+  FaBuilding,
+  FaHome,
   FaGasPump
 } from 'react-icons/fa';
 
-const servicesData = [
+const businessServicesData = [
   {
     title: 'Business Registration',
     desc: 'Complete business registration services with the Corporate Affairs Commission (CAC), including name search, reservation, and documentation.',
-    icon: <FaBriefcase />, 
+    icon: <FaBriefcase />,
   },
   {
     title: 'Tax Registration',
-    desc: 'Facilitate Tax Identification Number (TIN) acquisition and guide through tax registration processes with FIRS and State Revenue Services.',
+    desc: 'Facilitate Tax Identification Number (TIN) acquisition and guide through tax registration  processes with FIRS and State Revenue Services.',
     icon: <FaFileInvoiceDollar />,
   },
   {
@@ -39,6 +38,9 @@ const servicesData = [
     desc: 'Expert assistance in developing compelling business proposals for funding, partnerships, and strategic planning.',
     icon: <FaPenFancy />,
   },
+];
+
+const coreServicesData = [
   {
     title: 'Purchasing and Contract Management',
     desc: 'Comprehensive support in procurement processes, vendor selection, negotiation, and contract drafting and management.',
@@ -56,21 +58,21 @@ const servicesData = [
   },
   {
     title: 'Oil and Gas Services',
-    desc: 'This business plan outlines the establishment of a new enterprise dedicated to providing specialized services, essential supplies, and comprehensive support to the oil and gas industry. ',
+    desc: 'This business plan outlines the establishment of a new enterprise dedicated to providing specialized services, essential supplies, and comprehensive support to the oil and gas industry.',
     icon: <FaGasPump />,
   },
 ];
 
 const MainContent = () => {
   useEffect(() => {
-    AOS.init({ duration: 800, once: true, offset: 100 });
+    AOS.init({ duration: 1200, easing: 'ease-in-out', once: false, offset: 100, mirror: true });
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <main className="main-content">
-      <section className="hero animated-fadeInUp" data-aos="fade-up">
-        <div className="hero-text">
+      <section className="hero" data-aos="fade-up">
+        <div className="hero-text" data-aos="fade-right" data-aos-delay="300">
           <h1>
             Empowering Business and Property Growth in{' '}
             <span className="highlight-nigeria">Nigeria</span>
@@ -79,7 +81,7 @@ const MainContent = () => {
             Delivering excellence in business consulting, registration, and property management across Nigeria.
             Let us simplify compliance and maximize your value.
           </p>
-          <div className="btn-container">
+          <div className="btn-container" data-aos="zoom-in" data-aos-delay="600">
             <button className="btn-primary" id="actionBtn" onClick={() => window.location.href = '/#'}>
               <span className="btn-icon">🚀</span>
               <span className="btn-text">Get Started</span>
@@ -87,12 +89,12 @@ const MainContent = () => {
             </button>
           </div>
         </div>
-        <div className="hero-image animated-scaleIn" data-aos="zoom-in" data-aos-delay="200">
+        <div className="hero-image" data-aos="fade-left" data-aos-delay="500">
           <img src={HeroImage} alt="Business illustration" />
         </div>
       </section>
 
-      <section className="introduction animated-fadeInUp" data-aos="fade-up" data-aos-delay="300">
+      <section className="introduction" data-aos="fade-up" data-aos-delay="300">
         <h2>Discover Goldcups</h2>
         <p>
           Goldcups Consulting Limited is dedicated to providing
@@ -118,9 +120,9 @@ const MainContent = () => {
           <h3 className='services-offered'>We Offer</h3>
         </section>
 
-        <section className='offer-list animated-fadeInUp' data-aos="fade-up" data-aos-delay="400">
+        <section className='offer-list' data-aos="fade-up" data-aos-delay="400">
           <div className='offer-list-items'>
-            <div className='offer-item' data-aos="zoom-in-up">
+            <div className='offer-item' data-aos="flip-left" data-aos-delay="100">
               <img className='offer-img' src={missionImage} alt="Mission" />
               <h4>Our Mission</h4>
               <p>To provide exceptional, client-centric business and estate management solutions that
@@ -128,30 +130,25 @@ const MainContent = () => {
                 Core Service Areas
               </p>
             </div>
-            <div className='offer-item' data-aos="zoom-in-up">
+            <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
               <img className='offer-img' src={vissionImage} alt="Vision" />
               <h4>Our Vision</h4>
               <p>To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and
                 unwavering commitment to client success in both business and estate management.</p>
             </div>
-            {/* <div className='offer-item' data-aos="zoom-in-up">
-              <img className='offer-img' src={mottoImage} alt="Motto" />
-              <h4>Our Motto</h4>
-              <p>Ensure statutory compliance by managing and filing annual returns with CAC and FIRS, including financial statements preparation.</p>
-            </div> */}
           </div>
         </section>
       </section>
 
-      <section className="services animated-fadeInUp" data-aos="fade-up" data-aos-delay="300">
-        <h2>Our Core Services</h2>
-        <h3>
+      <section className="mission" data-aos="fade-up" data-aos-delay="200">
+        <h2 style={{ color: "white", textAlign: "start", fontSize: "2.2rem" }}>Business Services</h2>
+        <h3 style={{ color: "white", textAlign: "start", fontSize: "1.2rem", marginBottom: "3rem" }}>
           Goldcups Consulting Limited offers a synergistic suite of services designed to address the critical needs
           of businesses and property owners in Nigeria.
         </h3>
         <div className="service-cards">
-          {servicesData.map((service, i) => (
-            <div key={i} className="card" data-aos="fade-up" data-aos-delay={`${400 + i * 200}`}>
+          {businessServicesData.map((service, i) => (
+            <div key={i} className="card" data-aos="zoom-in" data-aos-delay={`${300 + i * 150}`}>
               <div className="card-icon">{service.icon}</div>
               <h3>{service.title}</h3>
               <p>{service.desc}</p>
@@ -159,6 +156,20 @@ const MainContent = () => {
           ))}
         </div>
       </section>
+
+      <section className="services" data-aos="fade-up" data-aos-delay="300">
+        <h2>Our Core Services</h2>
+        <div className="service-cards">
+          {coreServicesData.map((service, i) => (
+            <div key={i} className="card" data-aos="zoom-in-up" data-aos-delay={`${400 + i * 200}`}>
+              <div className="card-icon">{service.icon}</div>
+              <h3>{service.title}</h3>
+              <p>{service.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
     </main>
   );
 };
