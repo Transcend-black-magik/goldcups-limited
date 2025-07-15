@@ -116,9 +116,9 @@ const MainContent = () => {
       </section>
 
       <section className='mission-vision-motto'>
-        <section className="mission" data-aos="fade-up" data-aos-delay="600">
+        {/* <section className="mission" data-aos="fade-up" data-aos-delay="600">
           <h3 className='services-offered'>We Offer</h3>
-        </section>
+        </section> */}
 
         <section className='offer-list' data-aos="fade-up" data-aos-delay="400">
           <div className='offer-list-items'>
