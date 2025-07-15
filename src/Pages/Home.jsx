@@ -7,7 +7,6 @@ import missionImage from '../assets/mission-image.png';
 import vissionImage from '../assets/vision-image.png';
 import mottoImage from '../assets/motto-image.png';
 
-// SVG icons (or use react-icons if you prefer)
 import { 
   FaBriefcase, 
   FaFileInvoiceDollar, 
@@ -23,7 +22,7 @@ const servicesData = [
   {
     title: 'Business Registration',
     desc: 'Complete business registration services with the Corporate Affairs Commission (CAC), including name search, reservation, and documentation.',
-    icon: <FaBriefcase />,
+    icon: <FaBriefcase />, 
   },
   {
     title: 'Tax Registration',
@@ -62,20 +61,15 @@ const servicesData = [
   },
 ];
 
-
 const MainContent = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true, offset: 100 });
+    window.scrollTo(0, 0);
   }, []);
-  useEffect(() => {
-  window.scrollTo(0, 0);
-}, []);
-
 
   return (
     <main className="main-content">
-      {/* Hero Section */}
-      <section className="hero" data-aos="fade-up">
+      <section className="hero animated-fadeInUp" data-aos="fade-up">
         <div className="hero-text">
           <h1>
             Empowering Business and Property Growth in{' '}
@@ -85,25 +79,23 @@ const MainContent = () => {
             Delivering excellence in business consulting, registration, and property management across Nigeria.
             Let us simplify compliance and maximize your value.
           </p>
-          <div class="btn-container">
-            <button class="btn-primary" id="actionBtn" onClick={() => window.location.href = '/#'}>
-              <span class="btn-icon">🚀</span>
-              <span class="btn-text">Get Started</span>
-              <span class="btn-spinner"></span>
+          <div className="btn-container">
+            <button className="btn-primary" id="actionBtn" onClick={() => window.location.href = '/#'}>
+              <span className="btn-icon">🚀</span>
+              <span className="btn-text">Get Started</span>
+              <span className="btn-spinner"></span>
             </button>
           </div>
         </div>
-        <div className="hero-image" data-aos="zoom-in" data-aos-delay="200">
+        <div className="hero-image animated-scaleIn" data-aos="zoom-in" data-aos-delay="200">
           <img src={HeroImage} alt="Business illustration" />
         </div>
       </section>
 
-
-      {/* Introduction section */}
-      <section className="introduction" data-aos="fade-up" data-aos-delay="300">
+      <section className="introduction animated-fadeInUp" data-aos="fade-up" data-aos-delay="300">
         <h2>Discover Goldcups</h2>
         <p>
-          Goldcups Consulting Limited is a newly established firm dedicated to providing
+          Goldcups Consulting Limited is dedicated to providing
           comprehensive business and estate management services. With a deep
           understanding of the local market dynamics and a commitment to excellence,
           Goldcups Consulting Limited is set to be the trusted advisor for a diverse clientele,
@@ -121,40 +113,37 @@ const MainContent = () => {
         </p>
       </section>
 
-      {/* Mission, Vision, and Motto Section */}
       <section className='mission-vision-motto'>
         <section className="mission" data-aos="fade-up" data-aos-delay="600">
           <h3 className='services-offered'>We Offer</h3>
         </section>
 
-        {/* {Our Aim} */}
-        <section className='offer-list' data-aos="fade-up" data-aos-delay="400">
+        <section className='offer-list animated-fadeInUp' data-aos="fade-up" data-aos-delay="400">
           <div className='offer-list-items'>
-            <div className='offer-item'>
-              <img className='offer-img' src={missionImage} alt="Business illustration" />
+            <div className='offer-item' data-aos="zoom-in-up">
+              <img className='offer-img' src={missionImage} alt="Mission" />
               <h4>Our Mission</h4>
               <p>To provide exceptional, client-centric business and estate management solutions that
-                  foster growth, ensure compliance, and maximize value for our clients in Nigeria.
-                  Core Service Areas
+                foster growth, ensure compliance, and maximize value for our clients in Nigeria.
+                Core Service Areas
               </p>
             </div>
-            <div className='offer-item'>
-              <img className='offer-img' src={vissionImage} alt="Business illustration" />
+            <div className='offer-item' data-aos="zoom-in-up">
+              <img className='offer-img' src={vissionImage} alt="Vision" />
               <h4>Our Vision</h4>
               <p>To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and
                 unwavering commitment to client success in both business and estate management.</p>
             </div>
-            <div className='offer-item'>
-              <img className='offer-img' src={mottoImage} alt="Business illustration" />
+            {/* <div className='offer-item' data-aos="zoom-in-up">
+              <img className='offer-img' src={mottoImage} alt="Motto" />
               <h4>Our Motto</h4>
               <p>Ensure statutory compliance by managing and filing annual returns with CAC and FIRS, including financial statements preparation.</p>
-            </div>
+            </div> */}
           </div>
         </section>
       </section>
 
-      {/* Services Section */}
-      <section className="services" data-aos="fade-up" data-aos-delay="300">
+      <section className="services animated-fadeInUp" data-aos="fade-up" data-aos-delay="300">
         <h2>Our Core Services</h2>
         <h3>
           Goldcups Consulting Limited offers a synergistic suite of services designed to address the critical needs

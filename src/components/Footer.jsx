@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import logoImg from '../assets/main-logo.png'; // Ensure the path is correct
 import './Footer.css';
 
 const Footer = () => {
@@ -31,7 +32,10 @@ const Footer = () => {
     >
       <div className={`footer-container ${isVisible ? 'footer-animate' : ''}`}>
         <div className={`footer-brand ${isVisible ? 'footer-animate' : ''}`}>
-          <h2 className="footer-logo">🏆 Goldcups Limited</h2>
+          <div className="footer-logo-container">
+            <img src={logoImg} alt="Goldcups Limited Logo" className="footer-logo" />
+            <h1 className="footer-title">Goldcups Limited</h1>
+          </div>
           <p className="footer-description">
             Your trusted partner for business services and estate management in Nigeria. We empower growth,
             ensure compliance, and maximize value for our clients.

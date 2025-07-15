@@ -3,7 +3,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #e3e2de;
+  background-color: #ffffff;
   width: 100vw;
   box-sizing: border-box;
   padding: 0.7rem 0;
@@ -26,7 +26,7 @@
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  
 }
 
 .logo {
@@ -34,13 +34,11 @@
   font-weight: 700;
   font-family: 'Fjalla One', sans-serif;
   color: #23397d;
-  margin: 0;
 }
 
 .logo-image {
   height: 4.2rem;
   width: auto;
-  margin-right: 10px;
   border-radius: 6px;
   object-fit: cover;
 }

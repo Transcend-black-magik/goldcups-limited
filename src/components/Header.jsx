@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import logoImg from '../assets/main-logo.jpeg';
+import logoImg from '../assets/main-logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +29,6 @@ const Header = () => {
         <div className="logo-container">
           <img src={logoImg} alt="Goldcups Limited Logo" className="logo-image" />
           <h1 className="logo">Goldcups <span className="logo-sub">Limited</span></h1>
-
         </div>
 
         {isMobile ? (

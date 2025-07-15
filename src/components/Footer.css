@@ -18,6 +18,12 @@
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
+.footer-logo {
+  height: 3rem;
+  width: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
 
 .footer-brand {
   flex: 1 1 320px;
