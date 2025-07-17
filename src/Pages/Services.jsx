@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../components/styles/ServicesPage.css';
-import heroImage from '../assets/service-image.png'; // Make sure the path is correct
+import heroImage from '../assets/service-image.png';
 
 const sections = [
   {
+    id: 'business-services',
     title: 'Business Services',
     services: [
       'Business Registration (CAC name search, reservation, documentation)',
@@ -15,6 +17,7 @@ const sections = [
     ],
   },
   {
+    id: 'estate-property-management',
     title: 'Estate & Property Management',
     services: [
       'Property Management (tenant vetting, lease admin, maintenance, rent collection)',
@@ -22,6 +25,7 @@ const sections = [
     ],
   },
   {
+    id: 'oil-and-gas-services',
     title: 'Oil and Gas Services',
     services: [
       'Well Completion and Intervention: tubing install, packers, artificial lift systems',
@@ -34,6 +38,7 @@ const sections = [
     ],
   },
   {
+    id: 'supplies',
     title: 'Supplies',
     services: [
       'Safety Equipment & PPE: FR clothing, hard hats, safety gear',
@@ -45,6 +50,7 @@ const sections = [
     ],
   },
   {
+    id: 'support-functions',
     title: 'Support Functions',
     services: [
       'Technical Consulting: optimization, troubleshooting',
@@ -57,9 +63,27 @@ const sections = [
 ];
 
 const ServicesPage = () => {
+  const location = useLocation();
+  const sectionRefs = useRef({});
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const { scrollTo, highlight } = location.state || {};
+    if (scrollTo && sectionRefs.current[scrollTo]) {
+      const target = sectionRefs.current[scrollTo];
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Apply highlight animation
+      if (highlight) {
+        const items = target.querySelectorAll('.service-item');
+        items.forEach((item) => {
+          if (item.textContent.includes(highlight)) {
+            item.classList.add('highlight-item');
+            setTimeout(() => item.classList.remove('highlight-item'), 2500);
+          }
+        });
+      }
+    }
+  }, [location]);
 
   return (
     <div className="services-container">
@@ -83,7 +107,9 @@ const ServicesPage = () => {
       <div className="services-content">
         {sections.map((section, index) => (
           <motion.div
-            key={index}
+            key={section.id}
+            id={section.id}
+            ref={(el) => (sectionRefs.current[section.id] = el)}
             className="service-section"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

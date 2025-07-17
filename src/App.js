@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MainContent from './Pages/Home';
 import ServicesPage from './Pages/Services';
+import AboutUs from './Pages/About';
 
 function App() {
   return (
@@ -12,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainContent/>} />
         <Route path="/services" element={<ServicesPage />} />
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/about" element={<AboutUs />} />
+        {/* <Route path="/contact" element={<Contact />} /> */}
       </Routes>
       <Footer/>
     </Router>

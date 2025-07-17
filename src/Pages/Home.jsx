@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../components/styles/MainContent.css';
+import { useNavigate } from 'react-router-dom';
+
 import HeroImage from '../assets/hero-image.png';
 import missionImage from '../assets/mission-image.png';
 import vissionImage from '../assets/vision-image.png';
@@ -14,7 +16,7 @@ import {
   FaShoppingCart,
   FaBuilding,
   FaHome,
-  FaGasPump
+  FaGasPump,
 } from 'react-icons/fa';
 
 const businessServicesData = [
@@ -22,21 +24,25 @@ const businessServicesData = [
     title: 'Business Registration',
     desc: 'Complete business registration services with the Corporate Affairs Commission (CAC), including name search, reservation, and documentation.',
     icon: <FaBriefcase />,
+    sectionId: 'business-services',
   },
   {
     title: 'Tax Registration',
     desc: 'Facilitate Tax Identification Number (TIN) acquisition and guide through tax registration  processes with FIRS and State Revenue Services.',
     icon: <FaFileInvoiceDollar />,
+    sectionId: 'business-services',
   },
   {
     title: 'Annual Returns Filing',
     desc: 'Ensure statutory compliance by managing and filing annual returns with CAC and FIRS, including financial statements preparation.',
     icon: <FaFileAlt />,
+    sectionId: 'business-services',
   },
   {
     title: 'Business Proposal Writing',
     desc: 'Expert assistance in developing compelling business proposals for funding, partnerships, and strategic planning.',
     icon: <FaPenFancy />,
+    sectionId: 'business-services',
   },
 ];
 
@@ -45,29 +51,44 @@ const coreServicesData = [
     title: 'Purchasing and Contract Management',
     desc: 'Comprehensive support in procurement processes, vendor selection, negotiation, and contract drafting and management.',
     icon: <FaShoppingCart />,
+    sectionId: 'support-functions',
   },
   {
-    title: 'Property Management',
-    desc: 'Comprehensive property management for residential, commercial, and industrial properties including tenant management and maintenance.',
-    icon: <FaBuilding />,
-  },
-  {
-    title: 'Estate Management',
+    title: 'Estate and Property Management',
     desc: 'Integrated estate management services including facility administration, security management, and community engagement.',
     icon: <FaHome />,
+    sectionId: 'estate-property-management',
   },
   {
     title: 'Oil and Gas Services',
     desc: 'This business plan outlines the establishment of a new enterprise dedicated to providing specialized services, essential supplies, and comprehensive support to the oil and gas industry.',
     icon: <FaGasPump />,
+    sectionId: 'oil-and-gas-services',
   },
+  // {
+  //   title: 'Business Services',
+  //   desc: 'Comprehensive property management for residential, commercial, and industrial properties including tenant management and maintenance.',
+  //   icon: <FaBuilding />,
+  //   sectionId: 'estate-property-management',
+  // },
 ];
 
 const MainContent = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    AOS.init({ duration: 1200, easing: 'ease-in-out', once: false, offset: 100, mirror: true });
+    AOS.init({ duration: 1000, once: false, offset: 100, mirror: true });
     window.scrollTo(0, 0);
   }, []);
+
+  const handleCardClick = (sectionId, serviceTitle) => {
+    navigate('/services', {
+      state: {
+        scrollTo: sectionId,
+        highlight: serviceTitle,
+      },
+    });
+  };
 
   return (
     <main className="main-content">
@@ -116,60 +137,91 @@ const MainContent = () => {
       </section>
 
       <section className='mission-vision-motto'>
-        {/* <section className="mission" data-aos="fade-up" data-aos-delay="600">
-          <h3 className='services-offered'>We Offer</h3>
-        </section> */}
-
-        <section className='offer-list' data-aos="fade-up" data-aos-delay="400">
+        <section className="offer-list" data-aos="fade-up" data-aos-delay="400">
           <div className='offer-list-items'>
             <div className='offer-item' data-aos="flip-left" data-aos-delay="100">
               <img className='offer-img' src={missionImage} alt="Mission" />
               <h4>Our Mission</h4>
-              <p>To provide exceptional, client-centric business and estate management solutions that
+              <p>
+                To provide exceptional, client-centric business and estate management solutions that
                 foster growth, ensure compliance, and maximize value for our clients in Nigeria.
-                Core Service Areas
               </p>
             </div>
             <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
               <img className='offer-img' src={vissionImage} alt="Vision" />
               <h4>Our Vision</h4>
-              <p>To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and
-                unwavering commitment to client success in both business and estate management.</p>
+              <p>
+                To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and
+                unwavering commitment to client success in both business and estate management.
+              </p>
             </div>
           </div>
         </section>
       </section>
 
       <section className="mission" data-aos="fade-up" data-aos-delay="200">
-        <h2 style={{ color: "white", textAlign: "start", fontSize: "1.1rem" }}>Business Services</h2>
-        <h3 style={{ color: "white", textAlign: "start", fontSize: "1.2rem", marginBottom: "3rem" }}>
+         <h2 style={{fontSize: "2rem", textAlign: "start"}}>Our Core Services</h2>
+         <h3 style={{color: "black",textAlign: "start", fontSize: "1.2rem", marginBottom: "3rem" }}>
           Goldcups Consulting Limited offers a synergistic suite of services designed to address the critical needs
           of businesses and property owners in Nigeria.
         </h3>
         <div className="service-cards">
-          {businessServicesData.map((service, i) => (
-            <div key={i} className="card" data-aos="zoom-in" data-aos-delay={`${300 + i * 150}`}>
-              <div className="card-icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p>{service.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="services" data-aos="fade-up" data-aos-delay="300">
-        <h2>Our Core Services</h2>
-        <div className="service-cards">
           {coreServicesData.map((service, i) => (
-            <div key={i} className="card" data-aos="zoom-in-up" data-aos-delay={`${400 + i * 200}`}>
+            <div
+              key={i}
+              className="card"
+              data-aos="zoom-in-up"
+              data-aos-delay={`${400 + i * 200}`}
+              onClick={() => handleCardClick(service.sectionId, service.title)}
+              style={{ cursor: 'pointer' }}
+            >
+              <div className="card-icon">{service.icon}</div>
+              <h3>{service.title}</h3>
+              <p>{service.desc}</p>
+            </div>
+          ))}
+          <div className='card' 
+            data-aos="zoom-in-up" 
+            data-aos-delay="1000" 
+            onClick={() => handleCardClick('business-services', 'Business Services')} s
+            tyle={{ cursor: 'pointer' }}>
+            <div className="card-icon"><FaBuilding /></div>
+            <h3>Business Services</h3>
+            <ul className="services-list">
+              {businessServicesData.map((service, i) => (
+                <li key={i} className="service-item">
+                  <span className="service-icon">{service.icon}</span>
+                  <span>{service.title}</span>
+                </li>
+              ))}
+            </ul>
+              
+            
+          </div>
+        </div>
+          
+      </section>
+
+      {/* <section className="services" data-aos="fade-up" data-aos-delay="300">
+        
+        <h2 style={{ textAlign: "start", fontSize: "1.1rem" }}>Business Services</h2>
+        <div className="service-cards">
+          {businessServicesData.map((service, i) => (
+            <div
+              key={i}
+              className="card"
+              data-aos="zoom-in"
+              data-aos-delay={`${300 + i * 150}`}
+              onClick={() => handleCardClick(service.sectionId, service.title)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="card-icon">{service.icon}</div>
               <h3>{service.title}</h3>
               <p>{service.desc}</p>
             </div>
           ))}
         </div>
-      </section>
-
+      </section> */}
     </main>
   );
 };

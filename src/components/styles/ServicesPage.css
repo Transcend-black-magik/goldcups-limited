@@ -59,6 +59,14 @@
   position: relative;
   padding-bottom: 0.5rem;
 }
+/* Optional highlight animation */
+.highlight-item {
+  background-color: #fffae6;
+  border-left: 4px solid #ffa500;
+  padding-left: 12px;
+  transition: background-color 0.3s ease;
+}
+
 
 .section-title::after {
   content: '';
