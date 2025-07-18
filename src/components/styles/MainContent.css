@@ -240,6 +240,52 @@
   color: #002244;
 }
 
+/* ==========document service section================ */
+.document-services {
+  padding: 4rem 2rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.document-services h2 {
+  font-size: 2rem;
+  color: #23397d;
+  margin-bottom: 0.5rem;
+}
+
+.doc-subheading {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.doc-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+}
+
+.doc-service-item {
+  background-color: white;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+  font-weight: 600;
+  color: #002244;
+  font-size: 1rem;
+}
+
+.doc-service-item:hover {
+  transform: translateY(-5px);
+  background-color: #edf8fd;
+  color: #00aaff;
+}
+
+
 /* ========= Get Started Section ========= */
 .get-started-section {
   background-image: url('../../assets/get-started.png');

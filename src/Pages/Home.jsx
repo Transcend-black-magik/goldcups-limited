@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import HeroImage from '../assets/hero-image.png';
 import missionImage from '../assets/mission-image.png';
 import vissionImage from '../assets/vision-image.png';
+import valueImage from '../assets/value-image.png'
 // import GetStartedImage from '../assets/get-started.png';
 import "../components/styles/MainContent.css";
 
@@ -20,6 +21,7 @@ import {
   FaHome,
   FaGasPump,
 } from 'react-icons/fa';
+import AnimatedServices from "./AnimatedServices";
 
 const businessServicesData = [
   {
@@ -173,6 +175,16 @@ const MainContent = () => {
               To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and unwavering commitment to client success.
             </p>
           </div>
+          <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
+            <img className='offer-img' src={valueImage} alt="Vision" />
+            <h4>Our Core Value</h4>
+            <ul>
+              <li>Integrity & Transparency</li>
+              <li>Client-Centric Approach</li>
+              <li>Professionalism & Excellence</li>
+              <li>Innovation & Growth</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -219,6 +231,12 @@ const MainContent = () => {
           </div>
         </div>
       </section>
+
+      {/* Document Services Section */}
+      <section className="document-services" data-aos="fade-up" data-aos-delay="300">
+        <AnimatedServices/>
+      </section>
+
 
       {/* Get Started Section */}
       <div className="get-started-section" onClick={handleGetStartedClick}>
