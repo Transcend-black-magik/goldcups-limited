@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import '../components/styles/MainContent.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 
 import HeroImage from '../assets/hero-image.png';
 import missionImage from '../assets/mission-image.png';
 import vissionImage from '../assets/vision-image.png';
+// import GetStartedImage from '../assets/get-started.png';
+import "../components/styles/MainContent.css";
 
 import {
   FaBriefcase,
@@ -28,7 +30,7 @@ const businessServicesData = [
   },
   {
     title: 'Tax Registration',
-    desc: 'Facilitate Tax Identification Number (TIN) acquisition and guide through tax registration  processes with FIRS and State Revenue Services.',
+    desc: 'Facilitate Tax Identification Number (TIN) acquisition and guide through tax registration processes with FIRS and State Revenue Services.',
     icon: <FaFileInvoiceDollar />,
     sectionId: 'business-services',
   },
@@ -65,21 +67,32 @@ const coreServicesData = [
     icon: <FaGasPump />,
     sectionId: 'oil-and-gas-services',
   },
-  // {
-  //   title: 'Business Services',
-  //   desc: 'Comprehensive property management for residential, commercial, and industrial properties including tenant management and maintenance.',
-  //   icon: <FaBuilding />,
-  //   sectionId: 'estate-property-management',
-  // },
 ];
 
 const MainContent = () => {
   const navigate = useNavigate();
 
+  const [typedText, setTypedText] = useState("");
+  const [showNextParagraph, setShowNextParagraph] = useState(false);
+
+  const fullText = `Goldcups Consulting Limited is dedicated to providing comprehensive business and estate management services. With a deep understanding of the local market dynamics and a commitment to excellence, Goldcups Consulting Limited is set to be the trusted advisor for a diverse clientele, from aspiring entrepreneurs to established property holders.`;
+
   useEffect(() => {
-    AOS.init({ duration: 1000, once: false, offset: 100, mirror: true });
-    window.scrollTo(0, 0);
-  }, []);
+    AOS.init({ duration: 1000 });
+
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      if (index < fullText.length) {
+        setTypedText((prev) => prev + fullText.charAt(index));
+        index++;
+      } else {
+        clearInterval(typingInterval);
+        setTimeout(() => setShowNextParagraph(true), 500);
+      }
+    }, 20);
+
+    return () => clearInterval(typingInterval);
+  }, [fullText]);
 
   const handleCardClick = (sectionId, serviceTitle) => {
     navigate('/services', {
@@ -90,9 +103,21 @@ const MainContent = () => {
     });
   };
 
+  const handleGetStartedClick = () => {
+    navigate("/contact");
+  };
+
   return (
-    <main className="main-content">
+    <div className="main-content">
+      {/* Hero Section with animated background */}
       <section className="hero" data-aos="fade-up">
+        <motion.div
+          className="hero-background"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          style={{ backgroundImage: `url(${HeroImage})` }}
+        />
         <div className="hero-text" data-aos="fade-right" data-aos-delay="300">
           <h1>
             Empowering Business and Property Growth in{' '}
@@ -102,69 +127,65 @@ const MainContent = () => {
             Delivering excellence in business consulting, registration, and property management across Nigeria.
             Let us simplify compliance and maximize your value.
           </p>
-          <div className="btn-container" data-aos="zoom-in" data-aos-delay="600">
-            <button className="btn-primary" id="actionBtn" onClick={() => window.location.href = '/#'}>
-              <span className="btn-icon">🚀</span>
-              <span className="btn-text">Get Started</span>
-              <span className="btn-spinner"></span>
-            </button>
-          </div>
-        </div>
-        <div className="hero-image" data-aos="fade-left" data-aos-delay="500">
-          <img src={HeroImage} alt="Business illustration" />
         </div>
       </section>
 
+      {/* Introduction */}
       <section className="introduction" data-aos="fade-up" data-aos-delay="300">
         <h2>Discover Goldcups</h2>
-        <p>
-          Goldcups Consulting Limited is dedicated to providing
-          comprehensive business and estate management services. With a deep
-          understanding of the local market dynamics and a commitment to excellence,
-          Goldcups Consulting Limited is set to be the trusted advisor for a diverse clientele,
-          from aspiring entrepreneurs to established property holders.
+        <p className="typing-text">
+          <span>{typedText}</span><span className="blinking-cursor">|</span>
         </p>
-        <p className="highlight-nigeria">
-          Nigeria, a nation characterized by its dynamic economy and burgeoning
-          entrepreneurial spirit, presents a landscape of immense opportunities alongside
-          unique challenges. For businesses and property owners navigating this vibrant
-          environment, access to expert guidance and streamlined services is paramount for
-          sustainable growth and compliance. It is within this context that Goldcups Consulting
-          Limited proudly announces its launch, poised to become a pivotal partner for
-          individuals and organizations seeking to establish, manage, and grow their ventures in
-          Nigeria.
-        </p>
+        {showNextParagraph && (
+          <motion.p
+            className="intro-secondary-text"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            Nigeria, a nation characterized by its dynamic economy and burgeoning
+            entrepreneurial spirit, presents a landscape of immense opportunities
+            alongside unique challenges. For businesses and property owners
+            navigating this vibrant environment, access to expert guidance and
+            streamlined services is paramount for sustainable growth and compliance.
+            It is within this context that Goldcups Consulting Limited proudly
+            announces its launch, poised to become a pivotal partner for individuals
+            and organizations seeking to establish, manage, and grow their ventures
+            in Nigeria.
+          </motion.p>
+        )}
       </section>
 
-      <section className='mission-vision-motto'>
-        <section className="offer-list" data-aos="fade-up" data-aos-delay="400">
-          <div className='offer-list-items'>
-            <div className='offer-item' data-aos="flip-left" data-aos-delay="100">
-              <img className='offer-img' src={missionImage} alt="Mission" />
-              <h4>Our Mission</h4>
-              <p>
-                To provide exceptional, client-centric business and estate management solutions that
-                foster growth, ensure compliance, and maximize value for our clients in Nigeria.
-              </p>
-            </div>
-            <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
-              <img className='offer-img' src={vissionImage} alt="Vision" />
-              <h4>Our Vision</h4>
-              <p>
-                To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and
-                unwavering commitment to client success in both business and estate management.
-              </p>
-            </div>
+      {/* Mission and Vision */}
+      <section className="offer-list" data-aos="fade-up" data-aos-delay="400">
+        <div className='offer-list-items'>
+          <div className='offer-item' data-aos="flip-left" data-aos-delay="100">
+            <img className='offer-img' src={missionImage} alt="Mission" />
+            <h4>Our Mission</h4>
+            <p>
+              To provide exceptional, client-centric business and estate management solutions that foster growth, ensure compliance, and maximize value for our clients in Nigeria.
+            </p>
           </div>
-        </section>
+          <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
+            <img className='offer-img' src={vissionImage} alt="Vision" />
+            <h4>Our Vision</h4>
+            <p>
+              To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and unwavering commitment to client success.
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="mission" data-aos="fade-up" data-aos-delay="200">
-         <h2 style={{fontSize: "2rem", textAlign: "start"}}>Our Core Services</h2>
-         <h3 style={{color: "black",textAlign: "start", fontSize: "1.2rem", marginBottom: "3rem" }}>
-          Goldcups Consulting Limited offers a synergistic suite of services designed to address the critical needs
-          of businesses and property owners in Nigeria.
+      {/* Core Services */}
+      <section className="mission-header" data-aos="fade-up" data-aos-delay="100">
+        <h2>Our Core Services</h2>
+        <h3>
+          Goldcups Consulting Limited offers a synergistic suite of services designed to address the critical needs of businesses, property owners and oil and gas sectors in Nigeria.
         </h3>
+      </section>
+      <section className="mission" data-aos="fade-up" data-aos-delay="200">
+        
+
         <div className="service-cards">
           {coreServicesData.map((service, i) => (
             <div
@@ -180,11 +201,11 @@ const MainContent = () => {
               <p>{service.desc}</p>
             </div>
           ))}
-          <div className='card' 
-            data-aos="zoom-in-up" 
-            data-aos-delay="1000" 
-            onClick={() => handleCardClick('business-services', 'Business Services')} s
-            tyle={{ cursor: 'pointer' }}>
+          <div className='card'
+            data-aos="zoom-in-up"
+            data-aos-delay="1000"
+            onClick={() => handleCardClick('business-services', 'Business Services')}
+            style={{ cursor: 'pointer' }}>
             <div className="card-icon"><FaBuilding /></div>
             <h3>Business Services</h3>
             <ul className="services-list">
@@ -195,34 +216,26 @@ const MainContent = () => {
                 </li>
               ))}
             </ul>
-              
-            
           </div>
         </div>
-          
       </section>
 
-      {/* <section className="services" data-aos="fade-up" data-aos-delay="300">
-        
-        <h2 style={{ textAlign: "start", fontSize: "1.1rem" }}>Business Services</h2>
-        <div className="service-cards">
-          {businessServicesData.map((service, i) => (
-            <div
-              key={i}
-              className="card"
-              data-aos="zoom-in"
-              data-aos-delay={`${300 + i * 150}`}
-              onClick={() => handleCardClick(service.sectionId, service.title)}
-              style={{ cursor: 'pointer' }}
-            >
-              <div className="card-icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p>{service.desc}</p>
-            </div>
-          ))}
+      {/* Get Started Section */}
+      <div className="get-started-section" onClick={handleGetStartedClick}>
+        <div className="get-started-overlay">
+          <h2>Ready to Partner with Goldcups?</h2>
+          <p>Let’s build something impactful together.</p>
+          <motion.div
+            className="animated-arrow"
+            initial={{ x: 0 }}
+            animate={{ x: [0, 15, 0] }}
+            transition={{ repeat: Infinity, duration: 1 }}
+          >
+            →
+          </motion.div>
         </div>
-      </section> */}
-    </main>
+      </div>
+    </div>
   );
 };
 

@@ -1,16 +1,26 @@
-/* ========== Base Styles ========== */
+/* ======= Global Reset ======= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ======= Navbar ======= */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: #ffffff;
-  width: 100vw;
-  box-sizing: border-box;
+  width: 100%;
   padding: 0.7rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Navbar Inner Container */
 .navbar-container {
   width: 100%;
   max-width: 1440px;
@@ -19,14 +29,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
-/* Logo */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+}
+
+/* ======= Logo Section ======= */
 .logo-container {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo-row {
+  display: flex;
   align-items: center;
-  
+  gap: 0.5rem;
+}
+
+.logo-image {
+  height: 3.2rem;
+  width: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
 }
 
 .logo {
@@ -34,16 +70,37 @@
   font-weight: 700;
   font-family: 'Fjalla One', sans-serif;
   color: #23397d;
+  margin: 0;
 }
 
-.logo-image {
-  height: 4.2rem;
-  width: auto;
-  border-radius: 6px;
-  object-fit: cover;
+.logo-sub {
+  color: #002244;
+  font-weight: 600;
 }
 
-/* ========== Desktop Nav ========== */
+.logo-rc {
+  font-size: 0.85rem;
+  color: #666666;
+  font-weight: 500;
+  margin-top: 0.15rem;
+  margin-left: 2px;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .logo-sub {
+    font-size: 1.5rem;
+  }
+
+  .logo-rc {
+    font-size: 0.75rem;
+  }
+}
+
+/* ======= Desktop Navigation ======= */
 .nav-links-desktop {
   display: flex;
   gap: 2rem;
@@ -64,12 +121,13 @@
   color: #00ccff;
 }
 
-/* ========== Mobile Hamburger Menu ========== */
+/* ======= Hamburger (Mobile) ======= */
 .menu-icon {
   display: none;
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
+  margin-left: auto;
 }
 
 .menu-icon .bar {
@@ -79,23 +137,26 @@
   border-radius: 4px;
 }
 
-/* ========== Mobile Nav ========== */
+/* ======= Mobile Navigation ======= */
 .nav-links-mobile {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
-  max-height: 0;
-  overflow: hidden;
+  right: 0;
   background-color: #ffffff;
-  transition: max-height 0.3s ease;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
   list-style: none;
   padding: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .nav-links-mobile.active {
-  max-height: 300px;
+  max-height: 400px;
+  opacity: 1;
   padding: 1rem 0;
 }
 
@@ -117,7 +178,7 @@
   color: #00ccff;
 }
 
-/* ========== Responsive Rules ========== */
+/* ======= Responsive Rules ======= */
 @media (max-width: 768px) {
   .menu-icon {
     display: flex;
@@ -132,9 +193,4 @@
   .nav-links-mobile {
     display: none;
   }
-}
-
-/* Optional: prevent horizontal scroll */
-body {
-  overflow-x: hidden;
 }

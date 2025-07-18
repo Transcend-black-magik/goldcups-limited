@@ -34,22 +34,24 @@ const Footer = () => {
         <div className={`footer-brand ${isVisible ? 'footer-animate' : ''}`}>
           <div className="footer-logo-container">
             <img src={logoImg} alt="Goldcups Limited Logo" className="footer-logo" />
-            <h1 className="footer-title">Goldcups Limited</h1>
+            <h1 className="footer-title">Goldcups Limited <p>RC 7043380</p></h1>
+            
           </div>
           <p className="footer-description">
             Your trusted partner for business services and estate management in Nigeria. We empower growth,
             ensure compliance, and maximize value for our clients.
           </p>
+          
         </div>
 
         <div className={`footer-columns ${isVisible ? 'footer-animate' : ''}`}>
           <div className="footer-column">
             <h4>Services</h4>
             <ul>
-              <li>Business Registration</li>
-              <li>Tax Registration</li>
-              <li>Annual Returns</li>
-              <li>Property Management</li>
+              <li>Purchasing and Contract Management</li>
+              <li>Estate and Property Management</li>
+              <li>OIl and Gas Management</li>
+              <li>Business Service</li>
             </ul>
           </div>
 
