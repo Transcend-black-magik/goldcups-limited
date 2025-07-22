@@ -96,11 +96,11 @@ const MainContent = () => {
     return () => clearInterval(typingInterval);
   }, [fullText]);
 
-  const handleCardClick = (sectionId, serviceTitle) => {
+  const handleCardClick = () => {
     navigate('/services', {
       state: {
-        scrollTo: sectionId,
-        highlight: serviceTitle,
+        scrollTo: 'business-services',
+        highlight: 'Business Services',
       },
     });
   };

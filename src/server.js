@@ -6,14 +6,19 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// Middleware
+app.use(cors({
+  origin: "*", // In production, use your frontend domain: https://goldcupsltd.com
+}));
 app.use(express.json());
 
+// Route: Handle contact form submission
 app.post("/api/contact", async (req, res) => {
   const { name, email, phone, message } = req.body;
 
-  console.log("📩 Incoming request:", { name, email, phone, message });
+  console.log("📩 Incoming contact form request:", { name, email, phone, message });
 
+  // Brevo SMTP transporter
   const transporter = nodemailer.createTransport({
     host: "smtp-relay.brevo.com",
     port: 587,
@@ -25,7 +30,7 @@ app.post("/api/contact", async (req, res) => {
   });
 
   const mailOptions = {
-    from: email, // sender is the user filling the form
+    from: `"${name}" <${process.env.BREVO_SMTP_USER}>`, // Must match authenticated sender domain
     to: process.env.BREVO_RECEIVER_EMAIL,
     subject: `New Contact Form Submission from ${name}`,
     html: `
@@ -42,11 +47,12 @@ app.post("/api/contact", async (req, res) => {
     console.log("✅ Email sent:", info.response);
     res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
-    console.error("❌ Error sending email:", error);
+    console.error("❌ Failed to send email:", error);
     res.status(500).json({ message: "Failed to send email.", error: error.toString() });
   }
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });

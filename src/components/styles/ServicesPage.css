@@ -1,11 +1,12 @@
-/* Page Container */
+/* ServicesPage.css */
+
 .services-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9fafb;
-  color: #2e2e2e;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #002244;
 }
 
-/* Hero Section */
+/* ===== Hero Section (Keep your original) ===== */
 .hero {
   height: 80vh;
   position: relative;
@@ -42,80 +43,109 @@
   font-weight: 800;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
-
-/* Services Content */
-.services-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
+.hero-subtitle {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-top: 10px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Section Heading */
-.section-title {
-  font-size: 1.8rem;
-  color: #2563eb;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-/* Optional highlight animation */
-.highlight-item {
-  background-color: #fffae6;
-  border-left: 4px solid #ffa500;
-  padding-left: 12px;
-  transition: background-color 0.3s ease;
+.blinking-cursor {
+  display: inline-block;
+  width: 1px;
+  background-color: white;
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
 }
 
-
-.section-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: linear-gradient(to right, #2563eb, #10b981);
-  border-radius: 2px;
-  margin-top: 6px;
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
-/* Services Grid */
-.services-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .services-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.service-item {
+/* ===== Section Layout ===== */
+.custom-section {
+  padding: 80px 20px;
   background-color: #ffffff;
-  padding: 1.25rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  border: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  color: #374151;
 }
 
-.service-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.1);
-  border-color: #bfdbfe;
+.custom-section.alt-bg {
+  background-color: #f3f7fb;
 }
 
-.service-icon {
-  color: #f59e0b;
-  font-size: 1.2rem;
-  margin-top: 2px;
-  flex-shrink: 0;
+.custom-overlay {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.custom-overlay.light {
+  background: #fefefe;
+}
+
+/* ===== Typography ===== */
+.section-heading {
+  font-size: 2.5rem;
+  color: #002244;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #002244;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.section-text {
+  font-size: 1.125rem;
+  color: #333;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+/* ===== List Styling ===== */
+.styled-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.styled-list li {
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+  position: relative;
+  padding-left: 24px;
+  line-height: 1.6;
+}
+
+.styled-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #004080;
+  font-weight: bold;
+}
+
+/* ===== Highlight Animation ===== */
+.highlight-item {
+  background-color: #ffe58a;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* ===== Responsive Design ===== */
+@media screen and (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .custom-overlay {
+    padding: 20px;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+  }
+
+  .section-text {
+    font-size: 1rem;
+  }
 }

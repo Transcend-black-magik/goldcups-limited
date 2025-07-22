@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../components/styles/Contact.css';
+import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
   const [form, setForm] = useState({
@@ -10,48 +11,40 @@ const ContactPage = () => {
   });
 
   const [status, setStatus] = useState('');
-  const [errorDetails, setErrorDetails] = useState(null); // <-- to hold raw error
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          message: form.message,
-        }),
-      });
+    const templateParams = {
+      from_name: form.name,
+      from_email: form.email,
+      phone: form.phone,
+      message: form.message,
+    };
 
-      const data = await response.json();
-
-      if (response.ok) {
+    emailjs.send(
+      'YOUR_SERVICE_ID',
+      'YOUR_TEMPLATE_ID',
+      templateParams,
+      'YOUR_PUBLIC_KEY'
+    )
+      .then(() => {
         setStatus('✅ Message sent successfully!');
         setForm({ name: '', email: '', phone: '', message: '' });
-        setErrorDetails(null); // clear error
-      } else {
-        setStatus('❌ Failed to send message.');
-        setErrorDetails(data.message || 'Unknown server error');
-      }
-    } catch (error) {
-      setStatus('❌ Something went wrong. Check console.');
-      console.error('Error during fetch:', error);
-      setErrorDetails(error.message || 'Network error occurred.');
-    }
+      })
+      .catch((error) => {
+        console.error('❌ Failed to send email:', error);
+        setStatus('❌ Failed to send message. Try again.');
+      });
   };
 
   return (
     <div className="contact-page">
+      {/* your same form and layout here */}
       <section className="contact-hero">
         <div className="contact-hero-overlay">
           <h1>Contact Goldcups Limited</h1>
@@ -102,9 +95,7 @@ const ContactPage = () => {
           ></textarea>
 
           <button type="submit">Send Message</button>
-
           {status && <p className="form-status">{status}</p>}
-          {errorDetails && <p className="form-error">Error: {errorDetails}</p>}
         </form>
       </section>
     </div>
