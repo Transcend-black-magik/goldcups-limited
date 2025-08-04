@@ -93,6 +93,28 @@ const [typedText, setTypedText] = useState('');
           </ul>
         </motion.div>
       </section>
+
+      {/* === Purchasing and Contract Management=== */}
+      <section className="custom-section alt-bg" ref={(el) => (sectionRefs.current['purchas'] = el)}>
+        <motion.div className="custom-overlay" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <h2 className="section-heading">Purchasing and Contract Management</h2>
+          <p className="section-text">Purchasing and Contract Management and Services, offers competencies in navigating complex regulatory environments, meticulous documentation, and strategic advisory services  which are universally applicable and highly relevant to the needs of a state agency  and private enterprise. We oﬀer comprehensive support in: :</p>
+          <ul className="styled-list">
+            <li>procurement processes, including vendor selection, negotiation, and contract drafting and management. </li>
+          </ul>
+        </motion.div>
+      </section>
+
+      {/* Oil and Gas Service */}
+       <section className="custom-section alt-bg" ref={(el) => (sectionRefs.current['oil'] = el)}>
+        <motion.div className="custom-overlay" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <h2 className="section-heading">Oil and Gas Service</h2>
+          <p className="section-text">The oil and gas industry encompasses a vast network of specialized services that extend far beyond the initial exploration and drilling phases. These essential services form the backbone of energy operations, ensuring the safe, efficient, and profitable transformation of raw petroleum resources into the products that power our modern world.</p>
+          {/* <ul className="styled-list">
+            <li>procurement processes, including vendor selection, negotiation, and contract drafting and management. </li>
+          </ul> */}
+        </motion.div>
+      </section>
     </div>
   );
 };

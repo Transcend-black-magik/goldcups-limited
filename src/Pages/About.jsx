@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../components/styles/AboutUs.css';
-import aboutImage from '../assets/about-image.png'; // Use your latest realistic image here
+import aboutImage from '../assets/about-image.png';
 import { motion } from 'framer-motion';
 
 const AboutUs = () => {
+  const [typedText, setTypedText] = useState('');
+  const fullText = `Nigeria, a nation characterized by its dynamic economy and burgeoning entrepreneurial spirit, presents a landscape of immense opportunities alongside unique challenges. For businesses and property owners navigating this vibrant environment, access to expert guidance and streamlined services is paramount for sustainable growth and compliance. It is within this context that Goldcups Consulting Limited proudly announces its launch, poised to become a pivotal partner for individuals and organizations seeking to establish, manage, and grow their ventures in Nigeria.`;
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setTypedText((prev) => prev + fullText.charAt(index));
+      index++;
+      if (index === fullText.length) clearInterval(interval);
+    }, 20); // Adjust typing speed here (ms per character)
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="about-wrapper">
       <section className="about-hero">
@@ -33,12 +46,23 @@ const AboutUs = () => {
         >
           <h2 className="section-heading">Who We Are</h2>
           <p>
-            Goldcups Limited is a Nigerian-owned consulting firm specializing in business support,
-            estate management, oil & gas services, and professional supply chain solutions. Our
-            mission is to empower businesses and property owners with services that are both
-            reliable and transformative. With a reputation built on integrity, precision, and
-            excellence, we pride ourselves in being client-centric and results-driven.
+            Goldcups Consulting Limited is an established firm dedicated to providing
+            comprehensive business and estate management services. Our mission is to empower
+            our clients by simplifying complex administrative processes, oﬀering strategic insights,
+            and ensuring compliance with Nigerian regulatory frameworks. With a deep
+            understanding of the local market dynamics and a commitment to excellence,
+            Goldcups Consulting Limited is set to be the trusted advisor for a diverse clientele,
+            from aspiring entrepreneurs to established property holders.
           </p>
+
+          {/* Auto type section */}
+          <p className="auto-type">{typedText}</p>
+          <h2 className="section-heading">What we bring</h2>
+          <p>
+           Goldcups Consulting Limited brings a unique blend of expertise and a client-centric
+          approach that can significantly benefit individuals and businesses.
+          </p>
+          
         </motion.div>
 
         <div className="about-cards">
@@ -89,97 +113,3 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
-
-
-
-// import React, { useEffect } from 'react';
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
-// import { motion } from 'framer-motion';
-// import '../components/styles/AboutUs.css';
-// import aboutImage from '../assets/about-image.png'; // Replace with a suitable image
-
-// const AboutUs = () => {
-//   useEffect(() => {
-//     AOS.init({ duration: 1000 });
-//     window.scrollTo(0, 0);
-//   }, []);
-
-//   return (
-//     <div className="about-container">
-//       <section className="about-hero" data-aos="fade-up">
-//         <div className="about-hero-content">
-//           <motion.h1
-//             initial={{ opacity: 0, y: -20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.8 }}
-//           >
-//             About Goldcups Limited
-//           </motion.h1>
-//           <p>
-//             Goldcups Limited is a dynamic consulting and management company dedicated to empowering entrepreneurs,
-//             businesses, and property owners across Nigeria. We provide streamlined, reliable, and innovative services
-//             to help clients navigate business registration, regulatory compliance, and property management efficiently.
-//           </p>
-//         </div>
-//         <div className="about-image">
-//           <img src={aboutImage} alt="About Us" />
-//         </div>
-//       </section>
-
-//       <section className="mission-vision-values" data-aos="fade-up">
-//         <div className="mvv-box">
-//           <h2>Our Mission</h2>
-//           <p>
-//             To provide exceptional, client-focused business and estate management services that foster growth,
-//             ensure compliance, and maximize value in Nigeria’s vibrant business environment.
-//           </p>
-//         </div>
-//         <div className="mvv-box">
-//           <h2>Our Vision</h2>
-//           <p>
-//             To become the most trusted and respected consulting firm in Nigeria through integrity, expertise, and
-//             lasting client success.
-//           </p>
-//         </div>
-//         <div className="mvv-box">
-//           <h2>Our Core Values</h2>
-//           <ul>
-//             <li>Integrity</li>
-//             <li>Excellence</li>
-//             <li>Client-Centricity</li>
-//             <li>Innovation</li>
-//             <li>Transparency</li>
-//           </ul>
-//         </div>
-//       </section>
-
-//       <section className="why-choose-us" data-aos="fade-up">
-//         <h2>Why Choose Goldcups Limited?</h2>
-//         <ul>
-//           <li>✔ Extensive knowledge of Nigerian business regulations</li>
-//           <li>✔ Reliable estate and property management solutions</li>
-//           <li>✔ Personalized consulting tailored to your goals</li>
-//           <li>✔ Proven track record of success with diverse clients</li>
-//         </ul>
-//       </section>
-
-//       <section className="impact" data-aos="fade-up">
-//         <h2>Our Experience & Impact</h2>
-//         <p>
-//           Goldcups Limited has worked with over 150 businesses and individuals across Nigeria, delivering expert
-//           services in registration, compliance, estate and property management, oil and gas support, and business
-//           consulting. Our impact is measured in the success stories of clients we’ve helped thrive in competitive markets.
-//         </p>
-//       </section>
-
-//       <section className="cta-section" data-aos="zoom-in">
-//         <h2>Ready to Partner With Us?</h2>
-//         <p>Let’s help you grow your business or manage your estate the smart way.</p>
-//         <button onClick={() => window.location.href = '/contact'} className="btn-primary">Contact Us</button>
-//       </section>
-//     </div>
-//   );
-// };
-
-// export default AboutUs;

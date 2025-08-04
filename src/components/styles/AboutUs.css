@@ -108,6 +108,21 @@
   list-style-type: disc;
 }
 
+.auto-type {
+  white-space: pre-wrap;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  color: #333;
+  border-right: 2px solid #23397d;
+  animation: blinkCursor 0.8s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
 /* ========= Responsive ========= */
 @media (max-width: 768px) {
   .about-title {

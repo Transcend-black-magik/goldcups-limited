@@ -55,8 +55,9 @@ const ContactPage = () => {
       <section className="contact-form-section">
         <div className="contact-info">
           <h2>Reach Us</h2>
-          <p><strong>Address:</strong> 12 Goldcups Avenue, Lagos, Nigeria</p>
-          <p><strong>Phone:</strong> +234-800-000-0000</p>
+          <p><strong>Nigeria Address:</strong> Plot 1109 CADASTRAL ZONE. Life Camp Abuja </p>
+          <p><strong>UK Address:</strong> 13 Ravensbourne court, SE6 4XX London</p>
+          <p><strong>Phone:</strong> +234 906 693 3364, +234 803 451 2588, +44 771 4419 396</p>
           <p><strong>Email:</strong> info@goldcups.com</p>
         </div>
 
