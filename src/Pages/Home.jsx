@@ -241,8 +241,8 @@ const MainContent = () => {
       {/* Get Started Section */}
       <div className="get-started-section" onClick={handleGetStartedClick}>
         <div className="get-started-overlay">
-          <h2>Ready to Partner with Goldcups?</h2>
-          <p>Let’s build something impactful together.</p>
+          <h2>Ready to Get Started?</h2>
+          <p>Contact our team of experts to discuss your oil and gas service needs. We're here to provide solutions that drive operational excellence.</p>
           <motion.div
             className="animated-arrow"
             initial={{ x: 0 }}

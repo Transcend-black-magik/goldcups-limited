@@ -88,6 +88,22 @@ const ContactPage = () => {
             onChange={handleChange}
             required
           />
+          <input
+            type="text"
+            name="companyname"
+            placeholder="Company Name"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="role"
+            placeholder="Your Role"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
           <textarea
             name="message"
             placeholder="Your Message"
