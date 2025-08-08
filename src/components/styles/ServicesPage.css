@@ -1,5 +1,6 @@
-/* ServicesPage.css - updated premium styling */
-
+/* ===========================
+   BASE STYLES
+=========================== */
 .services-container {
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial;
   background-color: #f7f9fc;
@@ -92,7 +93,6 @@
   background-color: transparent;
 }
 
-/* overlay card for each section */
 .custom-overlay {
   max-width: 1120px;
   margin: 0 auto;
@@ -108,7 +108,6 @@
   background: #ffffff;
 }
 
-/* slight lift on hover for desktop */
 .custom-overlay:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(11,35,64,0.08);
@@ -121,7 +120,7 @@
   margin-bottom: 18px;
   display: inline-block;
   padding-bottom: 10px;
-  border-bottom: 4px solid #ffd27a; /* warm accent underline */
+  border-bottom: 4px solid #ffd27a;
   border-radius: 4px;
 }
 
@@ -132,7 +131,6 @@
   line-height: 1.75;
 }
 
-/* ===== Sub-section headings ===== */
 .sub-section-heading {
   font-size: 1.15rem;
   color: #0b3b66;
@@ -145,33 +143,99 @@
   padding-left: 12px;
 }
 
-/* ===== Core section specifics ===== */
+/* ===== Redesigned Core & Contract Section ===== */
+.core-section {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.core-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: var(--core-bg, url("../../assets/value-image.png"));
+  transform: scale(1);
+  animation: coreZoom 30s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.core-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.core-section .custom-overlay,
+.core-section * {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes coreZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+/* HTML data-bg support */
+.core-section[data-bg]::before {
+  background-image: attr(data-bg url);
+}
+
+/* Mobile Optimization for Zoom Effect */
+@media (max-width: 768px) {
+  .core-section::before {
+    animation: coreZoomMobile 40s ease-in-out infinite alternate;
+  }
+
+  @keyframes coreZoomMobile {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+}
+
 .core-section .custom-overlay {
   background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
   border-radius: 16px;
 }
 
-.core-heading {
+.core-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.core-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.core-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(255, 184, 74, 0.26);
+}
+
+.core-card h4 {
   font-size: 1.15rem;
-  color: #04283f;
-  margin-top: 12px;
-  margin-bottom: 10px;
   font-weight: 700;
+  color: #04283f;
+  margin-bottom: 10px;
 }
 
-.core-subheading {
-  font-size: 1rem;
-  color: #264057;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-/* layout blocks inside core */
-.core-block {
-  margin-bottom: 18px;
-  padding: 6px 0;
-  border-radius: 8px;
+.core-card p {
+  font-size: 0.96rem;
+  color: #556070;
+  line-height: 1.6;
+  margin-bottom: 0;
 }
 
 /* ===== List Styling ===== */
@@ -190,7 +254,6 @@
   color: #2c3e50;
 }
 
-/* custom icon / bullet */
 .styled-list li::before {
   content: '';
   position: absolute;
@@ -204,7 +267,6 @@
   display: inline-block;
 }
 
-/* highlight animation for scroll-to */
 .highlight-item {
   background: linear-gradient(90deg, rgba(255,210,122,0.24), rgba(255,243,224,0.12));
   transition: background-color 0.3s ease-in-out;
@@ -212,23 +274,7 @@
   padding-left: 28px;
 }
 
-/* ===== Small helpers ===== */
-.section-cta {
-  display: inline-block;
-  margin-top: 18px;
-  background: #042f56;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform .16s ease, box-shadow .16s ease;
-}
-.section-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(4,47,86,0.14);
-}
-/* ==== SERVICE CARDS GRID ==== */
+/* ===== SERVICE CARDS GRID ===== */
 .service-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -249,27 +295,6 @@
   box-shadow: 0 8px 25px rgba(255, 184, 74, 0.4);
 }
 
-.card-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-}
-
-.card-list li {
-  padding-left: 20px;
-  position: relative;
-  margin-bottom: 6px;
-  color: #ccc;
-}
-
-.card-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #ffb84a;
-}
-
-
 .service-icon {
   font-size: 2rem;
   color: #ffb84a;
@@ -278,7 +303,6 @@
   align-items: center;
   justify-content: center;
 }
-
 
 .service-title {
   font-size: 1.2rem;
@@ -316,21 +340,27 @@
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  .service-card {
-    padding: 18px;
-  }
+/* ===== CTA ===== */
+.section-cta {
+  display: inline-block;
+  margin-top: 18px;
+  background: #042f56;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform .16s ease, box-shadow .16s ease;
 }
-
+.section-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(4,47,86,0.14);
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 992px) {
-  .custom-overlay {
-    padding: 26px;
-  }
-  .hero {
-    min-height: 420px;
-  }
+  .custom-overlay { padding: 26px; }
+  .hero { min-height: 420px; }
 }
 
 @media (max-width: 768px) {
@@ -338,22 +368,14 @@
     height: 44vh;
     min-height: 320px;
   }
-  .hero-title {
-    font-size: 1.8rem;
-  }
-  .hero-subtitle {
-    font-size: 0.98rem;
-  }
+  .hero-title { font-size: 1.8rem; }
+  .hero-subtitle { font-size: 0.98rem; }
   .custom-overlay {
     padding: 18px;
     margin: 0 12px;
   }
-  .section-heading {
-    font-size: 1.4rem;
-  }
-  .sub-section-heading {
-    font-size: 1rem;
-  }
+  .section-heading { font-size: 1.4rem; }
+  .sub-section-heading { font-size: 1rem; }
   .styled-list li {
     padding-left: 30px;
     margin-bottom: 14px;
@@ -365,7 +387,6 @@
   }
 }
 
-/* small visual polish for very small screens */
 @media (max-width: 420px) {
   .hero-subtitle { font-size: 0.92rem; }
   .section-text { font-size: 0.98rem; }

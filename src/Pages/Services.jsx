@@ -9,15 +9,20 @@ const ServicesPage = () => {
   const location = useLocation();
   const sectionRefs = useRef({});
   const heroRef = useRef(null);
+
+  // Scroll-based animations for hero background
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const scale = useSpring(useTransform(scrollYProgress, [0, 1], [1.1, 1]), { stiffness: 100, damping: 30 });
   const opacity = useSpring(useTransform(scrollYProgress, [0, 1], [1, 0.75]));
+
+  // Subtitle text with typing animation
   const subtitleText = "Empowering businesses, managing properties with precision.";
   const [typedText, setTypedText] = useState('');
 
   // Typing effect for subtitle
   useEffect(() => {
     let currentIndex = 0;
+    setTypedText(''); // Reset typed text on mount
     const typingInterval = setInterval(() => {
       setTypedText((prev) => prev + subtitleText[currentIndex]);
       currentIndex++;
@@ -26,7 +31,7 @@ const ServicesPage = () => {
     return () => clearInterval(typingInterval);
   }, []);
 
-  // Link-based scroll + highlight
+  // Scroll and highlight based on location state
   useEffect(() => {
     const { scrollTo, highlight } = location.state || {};
     if (scrollTo && sectionRefs.current[scrollTo]) {
@@ -36,7 +41,7 @@ const ServicesPage = () => {
       if (highlight) {
         const items = target.querySelectorAll('li');
         items.forEach((item) => {
-          if (item.textContent.includes(highlight)) {
+          if (item.textContent.toLowerCase().includes(highlight.toLowerCase())) {
             item.classList.add('highlight-item');
             setTimeout(() => item.classList.remove('highlight-item'), 3000);
           }
@@ -44,21 +49,22 @@ const ServicesPage = () => {
       }
     }
   }, [location]);
-  // Animation Variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
+  // Animation variants for container and cards
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
 
   return (
     <div className="services-container">
@@ -149,95 +155,131 @@ const cardVariants = {
         </motion.div>
       </section>
 
-      {/* CORE FUNCTIONS (NEW) */}
-      <section className="custom-section core-section" ref={(el) => (sectionRefs.current['core'] = el)}>
-        <motion.div className="custom-overlay core-overlay" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+      {/* Core Function */}
+      <section 
+        className="custom-section core-section" 
+        ref={(el) => (sectionRefs.current['core'] = el)}
+      >
+        <motion.div 
+          className="core-container" 
+          initial={{ opacity: 0, y: 40 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.7 }}
+        >
           <h2 className="section-heading">Core Functions</h2>
 
-          <div className="core-block">
-            <h3 className="core-heading">1. Strategic Sourcing and Procurement</h3>
-            <p className="section-text">
-              Focuses on identifying, evaluating, and engaging with suppliers to acquire goods and services that meet the organization's needs at the best possible value.
-              It involves a strategic approach to purchasing, moving beyond transactional buying to consider long-term relationships and overall cost-effectiveness.
-            </p>
+          <div className="core-grid">
+            
+            {/* Strategic Sourcing & Procurement */}
+            <div className="core-card">
+              <h3 className="core-heading">Strategic Sourcing and Procurement</h3>
+              <p className="section-text">
+                Focuses on identifying, evaluating, and engaging with suppliers to acquire goods and services that meet the organization's needs at the best possible value.
+                It involves a strategic approach to purchasing, moving beyond transactional buying to consider long-term relationships and overall cost-effectiveness.
+              </p>
 
-            <h4 className="core-subheading">Goldcups assess and Specify Development</h4>
-            <p className="section-text">
-              Collaborating with internal departments to understand their requirements for goods, services, and works. This includes translating business needs into clear, concise,
-              and comprehensive specifications or scopes of work.
-            </p>
+              <div className="core-subblock">
+                <h4>Goldcups assess and Specify Development</h4>
+                <p>
+                  Collaborating with internal departments to understand their requirements for goods, services, and works. This includes translating business needs into clear, concise,
+                  and comprehensive specifications or scopes of work.
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Goldcups conduct Market Research and Supplier Identification</h4>
-            <p className="section-text">
-              Conducting thorough market research to identify potential suppliers, assess market trends, and understand supply chain dynamics. This involves identifying
-              qualified and reliable vendors capable of meeting the organization's standards and requirements.
-            </p>
+              <div className="core-subblock">
+                <h4>Goldcups conduct Market Research and Supplier Identification</h4>
+                <p>
+                  Conducting thorough market research to identify potential suppliers, assess market trends, and understand supply chain dynamics. This involves identifying
+                  qualified and reliable vendors capable of meeting the organization's standards and requirements.
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Supplier Qualification and Selection</h4>
-            <p className="section-text">
-              Developing and implementing processes for evaluating and qualifying potential suppliers based on criteria such as quality, reliability, financial stability,
-              ethical practices, and capacity. This often includes issuing Requests for Information (RFIs), Requests for Proposals (RFPs), or Requests for Quotations (RFQs).
-            </p>
+              <div className="core-subblock">
+                <h4>Supplier Qualification and Selection</h4>
+                <p>
+                  Developing and implementing processes for evaluating and qualifying potential suppliers based on criteria such as quality, reliability, financial stability,
+                  ethical practices, and capacity. This often includes issuing Requests for Information (RFIs), Requests for Proposals (RFPs), or Requests for Quotations (RFQs).
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Negotiation and Price Management</h4>
-            <p className="section-text">
-              Goldcups leads negotiations with suppliers to secure favorable terms, conditions, and pricing. This involves understanding cost drivers, market benchmarks,
-              and leveraging purchasing power to achieve optimal value for money.
-            </p>
+              <div className="core-subblock">
+                <h4>Negotiation and Price Management</h4>
+                <p>
+                  Goldcups leads negotiations with suppliers to secure favorable terms, conditions, and pricing. This involves understanding cost drivers, market benchmarks,
+                  and leveraging purchasing power to achieve optimal value for money.
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Purchase Order Management</h4>
-            <p className="section-text">
-              Goldcups creates, issues, and manages purchase orders, ensuring accuracy, proper authorization, and timely delivery of goods and services. This includes tracking
-              order status and resolving any discrepancies.
-            </p>
-          </div>
+              <div className="core-subblock">
+                <h4>Purchase Order Management</h4>
+                <p>
+                  Goldcups creates, issues, and manages purchase orders, ensuring accuracy, proper authorization, and timely delivery of goods and services. This includes tracking
+                  order status and resolving any discrepancies.
+                </p>
+              </div>
+            </div>
 
-          <div className="core-block">
-            <h3 className="core-heading">2. Contract Management and Administration</h3>
-            <p className="section-text">
-              Goldcups encompasses the entire lifecycle of contractual agreements, from drafting and execution to monitoring performance and ensuring compliance.
-              Effective contract management is crucial for minimizing legal and financial risks, maximizing value, and fostering strong supplier relationships.
-            </p>
+            {/* Contract Management */}
+            <div className="core-card">
+              <h3 className="core-heading">Contract Management and Administration</h3>
+              <p className="section-text">
+                Goldcups encompasses the entire lifecycle of contractual agreements, from drafting and execution to monitoring performance and ensuring compliance.
+                Effective contract management is crucial for minimizing legal and financial risks, maximizing value, and fostering strong supplier relationships.
+              </p>
 
-            <h4 className="core-subheading">Contract Drafting and Review</h4>
-            <p className="section-text">
-              Goldcups prepares, reviews, and finalizes contractual agreements, ensuring they accurately reflect negotiated terms, comply with legal requirements,
-              and protect the organization's interests. This involves collaboration with legal teams and internal stakeholders.
-            </p>
+              <div className="core-subblock">
+                <h4>Contract Drafting and Review</h4>
+                <p>
+                  Goldcups prepares, reviews, and finalizes contractual agreements, ensuring they accurately reflect negotiated terms, comply with legal requirements,
+                  and protect the organization's interests. This involves collaboration with legal teams and internal stakeholders.
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Contract Negotiation</h4>
-            <p className="section-text">
-              Goldcups participates in and leads contract negotiations to establish clear terms, conditions, deliverables, and performance metrics. This aims to create mutually
-              beneficial agreements that align with strategic objectives.
-            </p>
+              <div className="core-subblock">
+                <h4>Contract Negotiation</h4>
+                <p>
+                  Goldcups participates in and leads contract negotiations to establish clear terms, conditions, deliverables, and performance metrics. This aims to create mutually
+                  beneficial agreements that align with strategic objectives.
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Contract Execution and Archiving</h4>
-            <p className="section-text">
-              Goldcups ensures proper execution of contracts by all parties and maintains a centralized, secure repository for all contractual documents. This includes version control
-              and easy accessibility for authorized personnel.
-            </p>
+              <div className="core-subblock">
+                <h4>Contract Execution and Archiving</h4>
+                <p>
+                  Goldcups ensures proper execution of contracts by all parties and maintains a centralized, secure repository for all contractual documents. This includes version control
+                  and easy accessibility for authorized personnel.
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Performance Monitoring and Compliance</h4>
-            <p className="section-text">
-              We continuously monitor supplier performance against contractual obligations, service level agreements (SLAs), and key performance indicators (KPIs). This also involves ensuring
-              adherence to all legal, regulatory, and internal policy requirements throughout the contract term.
-            </p>
+              <div className="core-subblock">
+                <h4>Performance Monitoring and Compliance</h4>
+                <p>
+                  We continuously monitor supplier performance against contractual obligations, service level agreements (SLAs), and key performance indicators (KPIs). This also involves ensuring
+                  adherence to all legal, regulatory, and internal policy requirements throughout the contract term.
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Risk Management</h4>
-            <p className="section-text">
-              Identifying, assessing, and mitigating contractual risks, including financial, operational, legal, and reputational risks. This involves developing contingency plans and
-              dispute resolution mechanisms.
-            </p>
+              <div className="core-subblock">
+                <h4>Risk Management</h4>
+                <p>
+                  Identifying, assessing, and mitigating contractual risks, including financial, operational, legal, and reputational risks. This involves developing contingency plans and
+                  dispute resolution mechanisms.
+                </p>
+              </div>
 
-            <h4 className="core-subheading">Contract Amendments and Renewals</h4>
-            <p className="section-text">
-              Managing changes to existing contracts through formal amendment processes and overseeing the renewal or termination of contracts based on performance, need, and strategic considerations.
-            </p>
+              <div className="core-subblock">
+                <h4>Contract Amendments and Renewals</h4>
+                <p>
+                  Managing changes to existing contracts through formal amendment processes and overseeing the renewal or termination of contracts based on performance, need, and strategic considerations.
+                </p>
+              </div>
+            </div>
+
           </div>
         </motion.div>
       </section>
 
-      {/* ADD THIS NEW SECTION BELOW YOUR LAST CORE FUNCTIONS SECTION */}
+      {/* Additional Specialized Services */}
       <section
         className="custom-section"
         ref={(el) => (sectionRefs.current['additional'] = el)}
