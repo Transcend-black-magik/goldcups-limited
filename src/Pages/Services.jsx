@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { FaLeaf, FaTruck, FaShieldAlt, FaCogs, FaOilCan } from "react-icons/fa";
 import '../components/styles/ServicesPage.css';
 import heroImage from '../assets/service-image.png';
+import oilGasImage from '../assets/oilandgas.jpeg'
 
 const ServicesPage = () => {
   const location = useLocation();
@@ -143,6 +144,24 @@ const ServicesPage = () => {
             The oil and gas industry encompasses a vast network of specialized services that extend far beyond the initial exploration and drilling phases.
             These essential services form the backbone of energy operations, ensuring the safe, efficient, and profitable transformation of raw petroleum resources into the products that power our modern world.
           </p>
+
+          {/* add image here */}
+          <motion.div
+            className="section-image-container"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.img
+              src={oilGasImage}
+              alt="Oil and Gas Service"
+              className="section-image"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            />
+          </motion.div>
 
           <h3 className="sub-section-heading">Midstream Services</h3>
           <ul className="styled-list">

@@ -92,6 +92,18 @@
 .custom-section.alt-bg {
   background-color: transparent;
 }
+.section-image-container {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.section-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
 
 .custom-overlay {
   max-width: 1120px;
@@ -156,7 +168,8 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  background-image: var(--core-bg, url("../../assets/value-image.png"));
+  background-color: #042f56;
+  /* background-image: var(--core-bg, url("../../assets/value-image.png")); */
   transform: scale(1);
   animation: coreZoom 30s ease-in-out infinite alternate;
   z-index: 0;
