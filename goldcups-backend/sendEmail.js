@@ -4,10 +4,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
+if (!BREVO_API_KEY) {
+  console.error('❌ Missing BREVO_API_KEY in environment variables');
+  throw new Error('BREVO_API_KEY is not set');
+}
 
 async function sendEmails(data) {
   const { name, email, phone, companyname, role, message } = data;
 
+  // Email to Goldcups
   const emailToGoldcups = {
     sender: { name: 'Goldcups Limited', email: 'info@goldcupsltd.com' },
     to: [{ email: 'info@goldcupsltd.com', name: 'Goldcups Team' }],
@@ -23,6 +28,7 @@ async function sendEmails(data) {
     `,
   };
 
+  // Confirmation email to client
   const emailToClient = {
     sender: { name: 'Goldcups Limited', email: 'info@goldcupsltd.com' },
     to: [{ email, name }],
@@ -34,26 +40,39 @@ async function sendEmails(data) {
     `,
   };
 
-  async function send(emailData) {
-    const res = await fetch('https://api.brevo.com/v3/smtp/email', {
-      method: 'POST',
-      headers: {
-        'Api-Key': BREVO_API_KEY,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(emailData),
-    });
+  // Helper to send an email and log results
+  async function send(emailData, description) {
+    try {
+      console.log(`📨 Sending ${description}...`);
+      const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'Api-Key': BREVO_API_KEY,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      });
 
-    if (!res.ok) {
-      const err = await res.text();
-      throw new Error(`Brevo error: ${err}`);
+      const resultText = await res.text();
+
+      if (!res.ok) {
+        console.error(`❌ Brevo error for ${description}:`, resultText);
+        throw new Error(`Brevo returned ${res.status} for ${description}`);
+      }
+
+      console.log(`✅ ${description} sent successfully:`, resultText);
+      return JSON.parse(resultText);
+
+    } catch (err) {
+      console.error(`❌ Failed to send ${description}:`, err.message);
+      throw err; // Pass to index.js for proper response
     }
-    return res.json();
   }
 
-  await send(emailToGoldcups);
-  await send(emailToClient);
+  // Send both emails (separately so failure in one doesn’t block the other)
+  await send(emailToGoldcups, 'notification to Goldcups');
+  await send(emailToClient, 'confirmation to client');
 }
 
 export default sendEmails;
