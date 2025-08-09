@@ -15,7 +15,7 @@ const AboutUs = () => {
       if (index === fullText.length) clearInterval(interval);
     }, 20); // Adjust typing speed here (ms per character)
     return () => clearInterval(interval);
-  }, []);
+  }, [fullText]);
 
   return (
     <div className="about-wrapper">

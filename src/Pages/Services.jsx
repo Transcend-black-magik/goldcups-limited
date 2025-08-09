@@ -32,6 +32,123 @@ const ServicesPage = () => {
     return () => clearInterval(typingInterval);
   }, []);
 
+
+
+
+  const ProvenResultsCircle = ({ start }) => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (!start) return;
+
+    let startTime = null;
+    const duration = 3000;
+
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const t = Math.min(elapsed / duration, 1);
+      const eased = easeOutCubic(t) * 100;
+      setProgress(Math.round(eased));
+
+      if (t < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [start]);
+
+  const radius = 60;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (progress / 100) * circumference;
+
+  return (
+    <div
+      className={`circle-container ${progress === 100 ? "circle-glow" : ""}`}
+    >
+      <svg className="progress-ring" width="150" height="150">
+        <circle
+          className="progress-ring-bg"
+          stroke="#1f1f1f"
+          fill="transparent"
+          strokeWidth="10"
+          r={radius}
+          cx="75"
+          cy="75"
+        />
+        <circle
+          className="progress-ring-bar"
+          stroke="#00ff88"
+          fill="transparent"
+          strokeWidth="10"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          r={radius}
+          cx="75"
+          cy="75"
+        />
+      </svg>
+      <div className="circle-text">{progress}%</div>
+    </div>
+  );
+};
+
+
+
+// === NEW SECTION HOOKS ===
+  const sectionRef = useRef();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  const listItems = [
+    "Refineries",
+    "Petrochemical Plants",
+    "Pipeline Operators",
+    "Storage Facilities",
+    "Distribution Terminals",
+    "Processing Plants"
+  ];
+
+  const subSections = [
+    {
+      title: "Comprehensive Oil & Gas Solutions",
+      text: "Specialized services across the midstream and downstream sectors, ensuring operational excellence and regulatory compliance."
+    },
+    {
+      title: "Expert Team",
+      text: "Certified professionals with decades of combined experience in oil and gas operations."
+    },
+    {
+      title: "Safety First",
+      text: "Uncompromising commitment to safety with industry-leading safety records and protocols."
+    },
+    {
+      title: "Proven Results",
+      text: "Track record of successful project delivery and operational excellence across all service areas."
+    }
+  ];
+
+  const totalItemsBeforeCircle = listItems.length + subSections.length;
+
   // Scroll and highlight based on location state
   useEffect(() => {
     const { scrollTo, highlight } = location.state || {};
@@ -170,9 +287,166 @@ const ServicesPage = () => {
             <li>Gas processing and treatment</li>
             <li>Compression services</li>
             <li>Flow measurement and monitoring</li>
+
+          </ul>
+          <h3 className="sub-section-heading">Support Services</h3>
+          <ul className="styled-list">
+            <li>Environmental compliance and remediation</li>
+            <li>Safety consulting and training</li>
+            <li>Equipment rental and Leasing</li>
+            <li>Logistics and supply chain management</li>
+            <li>Engineering consulting</li>
+            <li>Project management</li>
+            <li>Asset intergrity management</li>
           </ul>
         </motion.div>
       </section>
+
+
+
+      {/* Additional Specialized Services */}
+      <section
+        className="custom-section"
+        ref={(el) => (sectionRefs.current['additional'] = el)}
+      >
+        <motion.div
+          className="custom-overlay"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <h2 className="section-heading">Additional Specialized Services</h2>
+
+          <motion.div className="service-card-grid" variants={containerVariants}>
+            {/* Environmental Services */}
+            <motion.div className="service-card" variants={cardVariants}>
+              <div className="service-icon"><FaLeaf /></div>
+              <h3 className="service-title">Environmental Services</h3>
+              <p className="service-desc">Compliance, remediation, and environmental management solutions.</p>
+              <ul className="card-list">
+                <li>Environmental Compliance</li>
+                <li>Site Remediation</li>
+                <li>Waste Management</li>
+                <li>Environmental Monitoring</li>
+              </ul>
+            </motion.div>
+
+            {/* Logistics Services */}
+            <motion.div className="service-card" variants={cardVariants}>
+              <div className="service-icon"><FaTruck /></div>
+              <h3 className="service-title">Logistics Services</h3>
+              <p className="service-desc">Supply chain management and logistics optimization solutions.</p>
+              <ul className="card-list">
+                <li>Supply Chain Management</li>
+                <li>Equipment Transportation</li>
+                <li>Inventory Management</li>
+                <li>Route Optimization</li>
+              </ul>
+            </motion.div>
+
+            {/* Safety & Compliance */}
+            <motion.div className="service-card" variants={cardVariants}>
+              <div className="service-icon"><FaShieldAlt /></div>
+              <h3 className="service-title">Safety & Compliance</h3>
+              <p className="service-desc">Safety consulting, training, and regulatory compliance services.</p>
+              <ul className="card-list">
+                <li>Safety Consulting</li>
+                <li>Training Programs</li>
+                <li>Regulatory Compliance</li>
+                <li>Risk Assessment</li>
+              </ul>
+            </motion.div>
+
+            {/* Engineering Consulting */}
+            <motion.div className="service-card" variants={cardVariants}>
+              <div className="service-icon"><FaCogs /></div>
+              <h3 className="service-title">Engineering Consulting</h3>
+              <p className="service-desc">Technical consulting and engineering solutions for complex projects.</p>
+              <ul className="card-list">
+                <li>Process Engineering</li>
+                <li>Asset Integrity Management</li>
+                <li>Project Management</li>
+                <li>Technical Audits</li>
+              </ul>
+            </motion.div>
+
+            {/* Downstream Services */}
+            <motion.div className="service-card" variants={cardVariants}>
+              <div className="service-icon"><FaOilCan /></div>
+              <h3 className="service-title">Downstream Services</h3>
+              <p className="service-desc">Refinery support, product distribution, and quality control services.</p>
+              <ul className="card-list">
+                <li>Refinery Support Services</li>
+                <li>Product Distribution</li>
+                <li>Quality Control & Testing</li>
+                <li>Process Optimization</li>
+              </ul>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+
+
+
+      {/* === NEW: Serving Critical Energy Infrastructure === */}
+      <section
+        ref={sectionRef}
+        className={`energy-infra fade-section ${visible ? "fade-in" : ""}`}
+      >
+        <div className="energy-infra-content">
+          <div className="energy-infra-text">
+            <h2>Serving Critical Energy Infrastructure</h2>
+            <p>
+              Our expertise spans across the entire energy value chain,
+              excluding exploration and drilling. We focus on the essential
+              infrastructure that keeps energy flowing to communities and
+              industries worldwide.
+            </p>
+            <ul>
+              {listItems.map((item, index) => (
+                <li
+                  key={index}
+                  className={`fade-item ${visible ? "fade-item-in" : ""}`}
+                  style={{ transitionDelay: `${0.2 + index * 0.15}s` }}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            {subSections.map((sec, index) => (
+              <div
+                key={index}
+                className={`infra-subsection fade-item ${
+                  visible ? "fade-item-in" : ""
+                }`}
+                style={{
+                  transitionDelay: `${
+                    0.2 + (listItems.length + index) * 0.15
+                  }s`
+                }}
+              >
+                <h3>{sec.title}</h3>
+                <p>{sec.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className={`energy-infra-chart fade-item ${
+              visible ? "fade-item-in" : ""
+            }`}
+            style={{
+              transitionDelay: `${0.2 + totalItemsBeforeCircle * 0.15}s`
+            }}
+          >
+            <ProvenResultsCircle start={visible} />
+          </div>
+        </div>
+      </section>
+
 
       {/* Core Function */}
       <section 
@@ -298,88 +572,7 @@ const ServicesPage = () => {
         </motion.div>
       </section>
 
-      {/* Additional Specialized Services */}
-      <section
-        className="custom-section"
-        ref={(el) => (sectionRefs.current['additional'] = el)}
-      >
-        <motion.div
-          className="custom-overlay"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          <h2 className="section-heading">Additional Specialized Services</h2>
-
-          <motion.div className="service-card-grid" variants={containerVariants}>
-            {/* Environmental Services */}
-            <motion.div className="service-card" variants={cardVariants}>
-              <div className="service-icon"><FaLeaf /></div>
-              <h3 className="service-title">Environmental Services</h3>
-              <p className="service-desc">Compliance, remediation, and environmental management solutions.</p>
-              <ul className="card-list">
-                <li>Environmental Compliance</li>
-                <li>Site Remediation</li>
-                <li>Waste Management</li>
-                <li>Environmental Monitoring</li>
-              </ul>
-            </motion.div>
-
-            {/* Logistics Services */}
-            <motion.div className="service-card" variants={cardVariants}>
-              <div className="service-icon"><FaTruck /></div>
-              <h3 className="service-title">Logistics Services</h3>
-              <p className="service-desc">Supply chain management and logistics optimization solutions.</p>
-              <ul className="card-list">
-                <li>Supply Chain Management</li>
-                <li>Equipment Transportation</li>
-                <li>Inventory Management</li>
-                <li>Route Optimization</li>
-              </ul>
-            </motion.div>
-
-            {/* Safety & Compliance */}
-            <motion.div className="service-card" variants={cardVariants}>
-              <div className="service-icon"><FaShieldAlt /></div>
-              <h3 className="service-title">Safety & Compliance</h3>
-              <p className="service-desc">Safety consulting, training, and regulatory compliance services.</p>
-              <ul className="card-list">
-                <li>Safety Consulting</li>
-                <li>Training Programs</li>
-                <li>Regulatory Compliance</li>
-                <li>Risk Assessment</li>
-              </ul>
-            </motion.div>
-
-            {/* Engineering Consulting */}
-            <motion.div className="service-card" variants={cardVariants}>
-              <div className="service-icon"><FaCogs /></div>
-              <h3 className="service-title">Engineering Consulting</h3>
-              <p className="service-desc">Technical consulting and engineering solutions for complex projects.</p>
-              <ul className="card-list">
-                <li>Process Engineering</li>
-                <li>Asset Integrity Management</li>
-                <li>Project Management</li>
-                <li>Technical Audits</li>
-              </ul>
-            </motion.div>
-
-            {/* Downstream Services */}
-            <motion.div className="service-card" variants={cardVariants}>
-              <div className="service-icon"><FaOilCan /></div>
-              <h3 className="service-title">Downstream Services</h3>
-              <p className="service-desc">Refinery support, product distribution, and quality control services.</p>
-              <ul className="card-list">
-                <li>Refinery Support Services</li>
-                <li>Product Distribution</li>
-                <li>Quality Control & Testing</li>
-                <li>Process Optimization</li>
-              </ul>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </section>
+      
     </div>
   );
 };

@@ -1,50 +1,65 @@
 import React, { useState } from 'react';
 import '../components/styles/Contact.css';
-import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
+    companyname: '',
+    role: '',
     message: ''
   });
 
   const [status, setStatus] = useState('');
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSending(true);
+    setStatus('');
 
-    const templateParams = {
-      from_name: form.name,
-      from_email: form.email,
-      phone: form.phone,
-      message: form.message,
-    };
-
-    emailjs.send(
-      'YOUR_SERVICE_ID',
-      'YOUR_TEMPLATE_ID',
-      templateParams,
-      'YOUR_PUBLIC_KEY'
-    )
-      .then(() => {
-        setStatus('✅ Message sent successfully!');
-        setForm({ name: '', email: '', phone: '', message: '' });
-      })
-      .catch((error) => {
-        console.error('❌ Failed to send email:', error);
-        setStatus('❌ Failed to send message. Try again.');
+    try {
+      const res = await fetch(process.env.REACT_APP_API_URL + '/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
       });
+
+      const text = await res.text();
+
+      try {
+        const data = JSON.parse(text);
+        if (!res.ok) {
+          throw new Error(data.error || 'Failed to send message');
+        }
+
+        setStatus('✅ Message sent successfully!');
+        setForm({
+          name: '',
+          email: '',
+          phone: '',
+          companyname: '',
+          role: '',
+          message: '',
+        });
+      } catch {
+        throw new Error(`Unexpected server response: ${text.substring(0, 100)}...`);
+      }
+    } catch (error) {
+      setStatus(`❌ Failed to send message: ${error.message}`);
+      console.error('Contact form error:', error);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
     <div className="contact-page">
-      {/* your same form and layout here */}
       <section className="contact-hero">
         <div className="contact-hero-overlay">
           <h1>Contact Goldcups Limited</h1>
@@ -64,6 +79,7 @@ const ContactPage = () => {
 
         <form className="contact-form" onSubmit={handleSubmit}>
           <h2>Request a Callback</h2>
+
           <input
             type="text"
             name="name"
@@ -71,6 +87,7 @@ const ContactPage = () => {
             value={form.name}
             onChange={handleChange}
             required
+            disabled={isSending}
           />
           <input
             type="email"
@@ -79,6 +96,7 @@ const ContactPage = () => {
             value={form.email}
             onChange={handleChange}
             required
+            disabled={isSending}
           />
           <input
             type="tel"
@@ -87,22 +105,23 @@ const ContactPage = () => {
             value={form.phone}
             onChange={handleChange}
             required
+            disabled={isSending}
           />
           <input
             type="text"
             name="companyname"
             placeholder="Company Name"
-            value={form.name}
+            value={form.companyname}
             onChange={handleChange}
-            required
+            disabled={isSending}
           />
           <input
             type="text"
             name="role"
             placeholder="Your Role"
-            value={form.name}
+            value={form.role}
             onChange={handleChange}
-            required
+            disabled={isSending}
           />
           <textarea
             name="message"
@@ -110,9 +129,12 @@ const ContactPage = () => {
             value={form.message}
             onChange={handleChange}
             required
+            disabled={isSending}
           ></textarea>
 
-          <button type="submit">Send Message</button>
+          <button type="submit" disabled={isSending}>
+            {isSending ? 'Sending...' : 'Send Message'}
+          </button>
           {status && <p className="form-status">{status}</p>}
         </form>
       </section>

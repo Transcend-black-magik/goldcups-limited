@@ -23,6 +23,7 @@
   text-align: left;
   color: var(--white);
   overflow: hidden;
+  will-change: transform;
 }
 
 .hero-background {
@@ -35,6 +36,7 @@
   background-size: cover;
   filter: brightness(0.6);
   z-index: 1;
+  will-change: filter;
 }
 
 .hero-text {
@@ -61,7 +63,7 @@
   font-weight: bold;
 }
 
-/* =============Introduction Section================ */
+/* ============= Introduction Section ================ */
 .introduction {
   padding: 4rem 12%;
   text-align: start;
@@ -134,6 +136,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  will-change: transform, box-shadow;
 }
 
 .offer-item:hover {
@@ -205,6 +208,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  will-change: transform;
 }
 
 .card:hover {
@@ -245,7 +249,7 @@
   color: #002244;
 }
 
-/* ==========document service section================ */
+/* ========== Document Service Section ================ */
 .document-services {
   padding: 4rem 2rem;
   background: #f9f9f9;
@@ -282,6 +286,7 @@
   font-weight: 600;
   color: #002244;
   font-size: 1rem;
+  will-change: transform, background-color, color;
 }
 
 .doc-service-item:hover {
@@ -290,10 +295,12 @@
   color: #00aaff;
 }
 
-
 /* ========= Get Started Section ========= */
 .get-started-section {
-  background-image: url('../../assets/get-started.png');
+  background-image: image-set(
+    url('../../assets/hero-image.png') 1x,
+    url('../../assets/hero-image.png') 2x
+  );
   background-size: cover;
   background-position: center;
   color: white;
@@ -310,6 +317,7 @@
   margin: 2rem 1%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  will-change: transform;
 }
 
 .get-started-section::before {
@@ -357,12 +365,11 @@
 }
 
 .animated-arrow {
-  font-size: 5rem; /* Increased size */
+  font-size: 5rem;
   font-weight: bold;
   display: inline-block;
   color: #ffd700;
 }
-
 
 /* ========= Media Queries ========= */
 @media (max-width: 768px) {

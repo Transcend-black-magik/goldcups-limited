@@ -92,6 +92,7 @@
 .custom-section.alt-bg {
   background-color: transparent;
 }
+
 .section-image-container {
   margin: 2rem 0;
   text-align: center;
@@ -103,7 +104,6 @@
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-
 
 .custom-overlay {
   max-width: 1120px;
@@ -155,7 +155,7 @@
   padding-left: 12px;
 }
 
-/* ===== Redesigned Core & Contract Section ===== */
+/* ===== Core & Contract Section ===== */
 .core-section {
   position: relative;
   overflow: hidden;
@@ -170,6 +170,7 @@
   background-position: center;
   background-color: #042f56;
   /* background-image: var(--core-bg, url("../../assets/value-image.png")); */
+  background-color: #04283f;
   transform: scale(1);
   animation: coreZoom 30s ease-in-out infinite alternate;
   z-index: 0;
@@ -194,12 +195,10 @@
   to { transform: scale(1.1); }
 }
 
-/* HTML data-bg support */
 .core-section[data-bg]::before {
-  background-image: attr(data-bg url);
+  background-image: var(--core-bg);
 }
 
-/* Mobile Optimization for Zoom Effect */
 @media (max-width: 768px) {
   .core-section::before {
     animation: coreZoomMobile 40s ease-in-out infinite alternate;
@@ -277,7 +276,6 @@
   border-radius: 4px;
   background: linear-gradient(180deg,#ffd27a,#ffb84a);
   box-shadow: 0 4px 10px rgba(255,173,60,0.14);
-  display: inline-block;
 }
 
 .highlight-item {
@@ -287,7 +285,7 @@
   padding-left: 28px;
 }
 
-/* ===== SERVICE CARDS GRID ===== */
+/* ===== Service Cards ===== */
 .service-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -301,6 +299,8 @@
   padding: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 260px;
+  max-width: 280px;
 }
 
 .service-card:hover {
@@ -365,6 +365,7 @@
   font-weight: 600;
   transition: transform .16s ease, box-shadow .16s ease;
 }
+
 .section-cta:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(4,47,86,0.14);
@@ -405,9 +406,7 @@
   .section-text { font-size: 0.98rem; }
 }
 
-/* ===== NEW ADDITIONS FOR CENTERING CORE FUNCTIONS HEADING AND ADDITIONAL SERVICES CARDS ===== */
-
-/* Center and white color for Core Functions heading */
+/* ===== Extra Alignment Tweaks ===== */
 .core-section .section-heading {
   color: white !important;
   text-align: center;
@@ -417,16 +416,159 @@
   border-bottom-color: #ffd27a;
 }
 
-/* Center Additional Specialized Services cards */
 .custom-section:last-of-type .service-card-grid {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
 }
+/* ===== NEW: Energy Infrastructure Section ===== */
+.energy-infra {
+  padding: 70px 20px;
+  background: linear-gradient(135deg, #141414, #0a0a0a);
+}
 
-/* Prevent cards from stretching too wide */
-.service-card {
-  min-width: 260px;
-  max-width: 280px;
+.energy-infra-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: center;
+}
+
+.energy-infra-text {
+  flex: 1 1 500px;
+}
+
+.energy-infra-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #00ff88;
+}
+
+.energy-infra-text p {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.energy-infra-text ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.energy-infra-text ul li {
+  background: rgba(0, 255, 136, 0.05);
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-left: 4px solid #00ff88;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.infra-subsection {
+  margin-bottom: 20px;
+}
+
+.infra-subsection h3 {
+  color: #00ff88;
+  margin-bottom: 8px;
+}
+
+.infra-subsection p {
+  color: #ccc;
+}
+
+/* Chart / Circle Container */
+.energy-infra-chart {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== Fade Animation ===== */
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-item {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-item-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Proven Results Circle ===== */
+.circle-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  stroke: #333;
+}
+
+.progress-ring-bar {
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00ff88;
+}
+
+/* Glow Pulse when Complete */
+.circle-glow .progress-ring-bar {
+  animation: glowPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% {
+    stroke: #00ff88;
+    filter: drop-shadow(0 0 5px #00ff88);
+  }
+  50% {
+    stroke: #00ffaa;
+    filter: drop-shadow(0 0 15px #00ffaa);
+  }
+  100% {
+    stroke: #00ff88;
+    filter: drop-shadow(0 0 5px #00ff88);
+  }
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 900px) {
+  .energy-infra-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .energy-infra-text ul li {
+    text-align: left;
+  }
 }
