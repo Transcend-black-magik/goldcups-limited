@@ -7,6 +7,9 @@ import { motion } from 'framer-motion';
 import client1 from '../assets/about-image.png';
 import client2 from '../assets/contact-image.png';
 import client3 from '../assets/mission-img.jpg';
+import missionImage from '../assets/mission-image.png';
+import vissionImage from '../assets/vision-image.png';
+import valueImage from '../assets/value-image.png';
 
 const AboutUs = () => {
   const [typedText, setTypedText] = useState('');
@@ -33,7 +36,7 @@ const AboutUs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            About Goldcups Limited
+            About Goldcups Consuling Limited
           </motion.h1>
         </div>
         <div
@@ -65,27 +68,91 @@ const AboutUs = () => {
         </motion.div>
 
         {/* CARDS */}
-        <div className="about-cards">
-          <motion.div className="about-card" whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 30 }} transition={{ delay: 0.2, duration: 0.6 }}>
-            <h3>Our Mission</h3>
+        <div className='offer-list-items'>
+          <div className='offer-item' data-aos="flip-left" data-aos-delay="100">
+            <img className='offer-img' src={missionImage} alt="Mission" />
+            <h4>Our Mission</h4>
             <p>
-              To provide exceptional, client-centric business and estate management solutions...
+              To provide exceptional, client-centric business and estate management solutions that foster growth, ensure compliance, and maximize value for our clients in Nigeria.
             </p>
-          </motion.div>
-          <motion.div className="about-card" whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 30 }} transition={{ delay: 0.4, duration: 0.6 }}>
-            <h3>Our Vision</h3>
+          </div>
+          <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
+            <img className='offer-img' src={vissionImage} alt="Vision" />
+            <h4>Our Vision</h4>
             <p>
-              To be the leading consulting firm in Nigeria, recognized for our integrity...
+              To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and unwavering commitment to client success.
             </p>
-          </motion.div>
-          <motion.div className="about-card" whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 30 }} transition={{ delay: 0.6, duration: 0.6 }}>
-            <h3>Our Values</h3>
+          </div>
+          <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
+            <img className='offer-img' src={valueImage} alt="Core Value" />
+            <h4>Our Core Value</h4>
             <ul>
               <li>Integrity & Transparency</li>
               <li>Client-Centric Approach</li>
               <li>Professionalism & Excellence</li>
               <li>Innovation & Growth</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* LEADERSHIP TEAM */}
+      <section className="leadership-section">
+        <motion.h2
+          className="leadership-heading"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Our Leadership Team
+        </motion.h2>
+
+        <div className="leadership-grid">
+          <motion.div
+            className="leader-card"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Chidozie Maduka"
+              className="leader-img"
+            />
+            <h3 className="leader-name">Chidozie Maduka, MBA</h3>
+            <p className="leader-bio">
+              An accomplished professional with an MBA and over three decades of diverse experience across multiple industries. 
+              He brings a wealth of expertise from 20 years in customer services, 5 years in sales and management, 
+              3 years in consulting business and management, and 3 years in contracts processing and verifications. 
+              His career journey includes contributions at Shell Companies Port Harcourt, Nasco Marketing in Jos, 
+              Southeastern Trains London, Eunisure Protects, and Tavistock Protects, all in London. 
+              Additionally, he serves as a director for two UK companies and is the Founder and CEO of Goldcups Consulting Limited.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="leader-card"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Barrister Sekpe Dukwo Lucy"
+              className="leader-img"
+            />
+            <h3 className="leader-name">Barrister Sekpe Dukwo Lucy</h3>
+            <p className="leader-bio">
+              A highly accomplished legal professional with over two decades of experience in corporate law, oil and gas, 
+              tax law, business finance, and property law. She studied at Ahmadu Bello University (1997–2003) and 
+              qualified at the Nigerian Law School in 2004. Lucy began her career at Alegeh and Co. (2004–2005) before 
+              dedicating 17 years (2007–2024) to the Corporate Affairs Commission. She later founded Degatas and Associates 
+              in 2022 and is also an Associate of the Institute of Chartered Secretaries and Administrators of Nigeria. 
+              Currently, she is the Head of Legal at Goldcups Consulting.
+            </p>
           </motion.div>
         </div>
       </section>
@@ -105,19 +172,19 @@ const AboutUs = () => {
         <div className="testimonial-grid">
           {[
             {
-              name: 'Chika Obinna',
+              name: 'Lilian Owoh',
               role: 'Business Owner',
               img: client1,
-              text: 'Goldcups helped me navigate complex business regulations with ease...',
+              text: 'Goldcups did a business plan for my new venture and work with me till I was able to to stand out from the crowd.',
             },
             {
-              name: 'Adeola Akinyemi',
+              name: 'Nonso Obi',
               role: 'Real Estate Investor',
               img: client2,
-              text: 'Their estate management services are top-notch...',
+              text: 'Goldcups helped me to see one of properties for a great price and less commission.',
             },
             {
-              name: 'Tunde Bakare',
+              name: 'Arinzechukwu Muoma',
               role: 'Entrepreneur',
               img: client3,
               text: 'From business registration to strategy, they guided me every step...',

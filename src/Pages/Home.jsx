@@ -58,7 +58,7 @@ const coreServicesData = [
     sectionId: 'support-functions',
   },
   {
-    title: 'Estate and Property Management',
+    title: 'Estate and Propery Sales and Management',
     desc: 'Integrated estate management services including facility administration, security management, and community engagement.',
     icon: <FaHome />,
     sectionId: 'estate-property-management',

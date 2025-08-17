@@ -62,7 +62,7 @@ const ContactPage = () => {
     <div className="contact-page">
       <section className="contact-hero">
         <div className="contact-hero-overlay">
-          <h1>Contact Goldcups Limited</h1>
+          <h1>Contact Goldcups Consulting Limited</h1>
           <p>We’re here to answer your questions and support your business goals.</p>
         </div>
       </section>
@@ -74,7 +74,7 @@ const ContactPage = () => {
           <p><strong>Nigeria Address:</strong> No. 8 Oromerezimgbu street total village, Off Aba road, Port Harcourt Rivers State </p>
           <p><strong>UK Address:</strong> 13 Ravensbourne court, SE6 4XX London</p>
           <p><strong>Phone:</strong> +234 906 693 3364, +234 803 451 2588, +44 771 4419 396</p>
-          <p><strong>Email:</strong> info@goldcups.com</p>
+          <p><strong>Email:</strong> C.maduka@goldcupsltd.com, ldsekpe@Goldcupsltd.com,</p>
         </div>
 
         <form className="contact-form" onSubmit={handleSubmit}>
