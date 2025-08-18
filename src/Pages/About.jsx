@@ -37,7 +37,7 @@ const AboutUs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            About Goldcups Consuling Limited
+            About Goldcups Consulting Limited
           </motion.h1>
         </div>
         <div
