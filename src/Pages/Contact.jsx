@@ -74,7 +74,7 @@ const ContactPage = () => {
           <p><strong>Nigeria Address:</strong> No. 8 Oromerezimgbu street total village, Off Aba road, Port Harcourt Rivers State </p>
           <p><strong>UK Address:</strong> 13 Ravensbourne court, SE6 4XX London</p>
           <p><strong>Phone:</strong> +234 906 693 3364, +234 803 451 2588, +44 771 4419 396</p>
-          <p><strong>Email:</strong> C.maduka@goldcupsltd.com, ldsekpe@Goldcupsltd.com,</p>
+          <p><strong>Email:</strong> info@goldcupsltd.com </p>
         </div>
 
         <form className="contact-form" onSubmit={handleSubmit}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../components/styles/AboutUs.css';
 import aboutImage from '../assets/about-image.png';
+import ceoImage from "../assets/CEO-IMG.webp"
 import { motion } from 'framer-motion';
 
 // Replace with real, optimized images (WebP recommended)
@@ -117,11 +118,12 @@ const AboutUs = () => {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="https://via.placeholder.com/150"
+              src={ceoImage}
               alt="Chidozie Maduka"
               className="leader-img"
             />
             <h3 className="leader-name">Chidozie Maduka, MBA</h3>
+            <h4>C.maduka@goldcupsltd.com</h4>
             <p className="leader-bio">
               An accomplished professional with an MBA and over three decades of diverse experience across multiple industries. 
               He brings a wealth of expertise from 20 years in customer services, 5 years in sales and management, 
@@ -145,6 +147,7 @@ const AboutUs = () => {
               className="leader-img"
             />
             <h3 className="leader-name">Barrister Sekpe Dukwo Lucy</h3>
+            <h4>ldsekpe@Goldcupsltd.com,</h4>
             <p className="leader-bio">
               A highly accomplished legal professional with over two decades of experience in corporate law, oil and gas, 
               tax law, business finance, and property law. She studied at Ahmadu Bello University (1997–2003) and 
