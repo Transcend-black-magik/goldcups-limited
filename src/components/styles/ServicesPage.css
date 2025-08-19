@@ -124,7 +124,7 @@
   margin-bottom: 18px;
   display: inline-block;
   padding-bottom: 10px;
-  border-bottom: 4px solid #ffd27a;
+  /* border-bottom: 4px solid #ffd27a; */
   border-radius: 4px;
 }
 .section-heading--dark {

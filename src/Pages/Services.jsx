@@ -194,7 +194,7 @@ const ServicesPage = () => {
           transition={{ duration: 0.9, ease: 'easeOut' }}
         >
           <h1 className="hero-title">Our Services</h1>
-          <p className="hero-subtitle">"Empowering businesses, managing properties with precision.</p>
+          <p className="hero-subtitle">Empowering businesses, managing properties with precision.</p>
         </motion.div>
       </section>
 

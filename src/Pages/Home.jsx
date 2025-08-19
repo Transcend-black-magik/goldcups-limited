@@ -136,7 +136,7 @@ const MainContent = () => {
       <section className="introduction" data-aos="fade-up" data-aos-delay="300">
         <h2>Discover Goldcups</h2>
         <p className="typing-text">
-          <span>{typedText}</span><span className="blinking-cursor">|</span>
+          <span>{typedText}</span><span className="blinking-cursor"></span>
         </p>
         {showNextParagraph && (
           <motion.p

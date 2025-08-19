@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import '../components/styles/AboutUs.css';
 import aboutImage from '../assets/about-image.png';
 import ceoImage from "../assets/CEO-IMG.webp"
+import femaleCeo from "../assets/femaleCeo.webp"
 import { motion } from 'framer-motion';
 
 // Replace with real, optimized images (WebP recommended)
-import client1 from '../assets/about-image.png';
-import client2 from '../assets/contact-image.png';
-import client3 from '../assets/mission-img.jpg';
+
 import missionImage from '../assets/mission-image.png';
 import vissionImage from '../assets/vision-image.png';
 import valueImage from '../assets/value-image.png';
@@ -142,12 +141,12 @@ const AboutUs = () => {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="https://via.placeholder.com/150"
+              src={femaleCeo}
               alt="Barrister Sekpe Dukwo Lucy"
               className="leader-img"
             />
             <h3 className="leader-name">Barrister Sekpe Dukwo Lucy</h3>
-            <h4>ldsekpe@Goldcupsltd.com,</h4>
+            <h4>ldsekpe@Goldcupsltd.com</h4>
             <p className="leader-bio">
               A highly accomplished legal professional with over two decades of experience in corporate law, oil and gas, 
               tax law, business finance, and property law. She studied at Ahmadu Bello University (1997–2003) and 
@@ -177,19 +176,19 @@ const AboutUs = () => {
             {
               name: 'Lilian Owoh',
               role: 'Business Owner',
-              img: client1,
+              // img: client1,
               text: 'Goldcups did a business plan for my new venture and work with me till I was able to to stand out from the crowd.',
             },
             {
               name: 'Nonso Obi',
               role: 'Real Estate Investor',
-              img: client2,
+              // img: client2,
               text: 'Goldcups helped me to see one of properties for a great price and less commission.',
             },
             {
               name: 'Arinzechukwu Muoma',
               role: 'Entrepreneur',
-              img: client3,
+              // img: client3,
               text: 'From business registration to strategy, they guided me every step...',
             },
           ].map((t, i) => (
@@ -201,7 +200,7 @@ const AboutUs = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
             >
-              <img src={t.img} alt={t.name} loading="lazy" className="testimonial-img" />
+              {/* <img src={t.img} alt={t.name} loading="lazy" className="testimonial-img" /> */}
               <p className="testimonial-text">"{t.text}"</p>
               <h4 className="testimonial-name">{t.name}</h4>
               <span className="testimonial-role">{t.role}</span>
