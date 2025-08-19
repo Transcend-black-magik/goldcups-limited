@@ -48,10 +48,14 @@ const Footer = () => {
           <div className="footer-column">
             <h4>Services</h4>
             <ul>
-              <li><Link to="/services#purchasing-contract">Purchasing & Contract Management</Link></li>
+              {/* <li><Link to="/services#purchasing-contract">Purchasing & Contract Management</Link></li>
               <li><Link to="/services#estate-property">Estate & Property Management</Link></li>
               <li><Link to="/services#oil-gas">Oil & Gas Services</Link></li>
-              <li><Link to="/services#business">Business Services</Link></li>
+              <li><Link to="/services#business">Business Services</Link></li> */}
+              <li>Purchasing & Contract Management</li>
+              <li>Estate & Property Management</li>
+              <li>Oil & Gas Services</li>
+              <li>Buisness Services</li>
             </ul>
           </div>
 

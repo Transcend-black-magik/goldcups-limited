@@ -69,21 +69,21 @@ const AboutUs = () => {
 
         {/* CARDS */}
         <div className='offer-list-items'>
-          <div className='offer-item' data-aos="flip-left" data-aos-delay="100">
+          <div className='offer-item'>
             <img className='offer-img' src={missionImage} alt="Mission" />
             <h4>Our Mission</h4>
             <p>
               To provide exceptional, client-centric business and estate management solutions that foster growth, ensure compliance, and maximize value for our clients in Nigeria.
             </p>
           </div>
-          <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
+          <div className='offer-item'>
             <img className='offer-img' src={vissionImage} alt="Vision" />
             <h4>Our Vision</h4>
             <p>
               To be the leading consulting firm in Nigeria, recognized for our integrity, expertise, and unwavering commitment to client success.
             </p>
           </div>
-          <div className='offer-item' data-aos="flip-right" data-aos-delay="200">
+          <div className='offer-item'>
             <img className='offer-img' src={valueImage} alt="Core Value" />
             <h4>Our Core Value</h4>
             <ul>
