@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../components/styles/AboutUs.css';
 import aboutImage from '../assets/about-image.png';
-import ceoImage from "../assets/CEO-IMG.webp"
+import ceoImage from "../assets/ceo-image.jpeg"
 import femaleCeo from "../assets/femaleCeo.webp"
 import { motion } from 'framer-motion';
 
@@ -152,7 +152,7 @@ const AboutUs = () => {
               tax law, business finance, and property law. She studied at Ahmadu Bello University (1997–2003) and 
               qualified at the Nigerian Law School in 2004. Lucy began her career at Alegeh and Co. (2004–2005) before 
               dedicating 17 years (2007–2024) to the Corporate Affairs Commission. She later founded Degatas and Associates 
-              in 2022 and is also an Associate of the Institute of Chartered Secretaries and Administrators of Nigeria. 
+              in August 2012 and is also an Associate of the Institute of Chartered Secretaries and Administrators of Nigeria. 
               Currently, she is the Head of Legal at Goldcups Consulting.
             </p>
           </motion.div>

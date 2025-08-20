@@ -14,7 +14,7 @@
 }
 
 .about-image {
-  background-size: cover;
+  background-size: auto;
   background-position: center;
   height: 100%;
   filter: brightness(0.75);
